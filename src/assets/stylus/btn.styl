@@ -1,0 +1,37 @@
+$color = #eee
+color-btn($color)
+  background-color $color
+  &:hover
+    color $color
+    &:before, &:after
+        background-color $color
+
+.effect-btn
+  position relative
+  display inline-block
+  padding 14px 36px
+  margin-right 25px
+  border-radius 8px
+  font-size 14px
+  color #fff
+  transition all .6s ease
+  &:hover
+    background-color #fff
+    &:before, &:after
+      width 100%
+      transition all .6s ease
+  &:before, &:after
+    content ""
+    position absolute
+    top 0
+    right 0
+    width 0
+    height 2px
+    transition all .4s ease
+  &:after
+    top inherit
+    right inherit
+    left 0
+    bottom 0
+.base-btn
+  color-btn(#e65d6e)
