@@ -46,6 +46,7 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../docs/index.html'),
+    favicon: path.resolve(__dirname, '../docs/favicon.png'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../docs'),

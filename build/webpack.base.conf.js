@@ -31,6 +31,9 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  externals: {
+    'CKEDITOR': 'window.CKEDITOR'
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {

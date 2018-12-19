@@ -1,5 +1,5 @@
 {
-  "name": "vue-admin-eslint",
+  "name": "vue-admin",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "query <15927700473@163.com>",
@@ -19,6 +19,7 @@
     "moment": "^2.22.2",
     "node-forge": "^0.7.6",
     "nprogress": "^0.2.0",
+    "path-to-regexp": "^2.4.0",
     "v-charts": "^1.19.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

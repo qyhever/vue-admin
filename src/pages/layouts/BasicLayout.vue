@@ -4,12 +4,13 @@
     <el-container class="container">
       <home-header></home-header>
       <div class="bread">
-        <el-breadcrumb separator="/">
+        <breadcrumb></breadcrumb>
+        <!-- <el-breadcrumb separator="/">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
           <el-breadcrumb-item>活动列表</el-breadcrumb-item>
           <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
+        </el-breadcrumb> -->
       </div>
       <el-main>
         <router-view></router-view>
@@ -26,11 +27,12 @@
 <script>
 import Siderbar from './Siderbar'
 import HomeHeader from './HomeHeader'
+import Breadcrumb from './Breadcrumb'
 import { BackTop } from 'iview'
 import BackToTop from '@/components/BackToTop'
 export default {
   name: 'BasiceLayout',
-  components: { Siderbar, HomeHeader, BackToTop, BackTop }
+  components: { Siderbar, HomeHeader, BackToTop, BackTop, Breadcrumb }
 }
 </script>
 

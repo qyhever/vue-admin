@@ -11,6 +11,8 @@ import Dashboard from '@/pages/Dashboard'
 import TableQuery from '@/pages/table/TableQuery'
 import TableImport from '@/pages/table/TableImport'
 import TableExport from '@/pages/table/TableExport'
+import Tinymce from '@/pages/richtext/Tinymce'
+import Ckeditor from '@/pages/richtext/Ckeditor'
 import Error404 from '@/pages/Error/Error404'
 
 // 静态公共路由
@@ -50,6 +52,7 @@ export const asyncRouterMap = [
     path: '/table',
     component: BasicLayout,
     icon: 'fa fa-table',
+    name: 'Table',
     meta: {
       title: '表格',
       roles: ['admin', 'guest']
@@ -58,6 +61,20 @@ export const asyncRouterMap = [
       { path: '/table/query', name: 'TableQuery', component: TableQuery, meta: { title: '查询表格' } },
       { path: '/table/import', name: 'TableImport', component: TableImport, meta: { title: '导入' } },
       { path: '/table/export', name: 'TableExport', component: TableExport, meta: { title: '导出' } }
+    ]
+  },
+  {
+    path: '/richtext',
+    component: BasicLayout,
+    icon: 'fa fa-file-text-o',
+    name: 'Richtext',
+    meta: {
+      title: '富文本',
+      roles: ['admin', 'guest']
+    },
+    children: [
+      { path: '/richtext/tinymce', name: 'Tinymce', component: Tinymce, meta: { title: 'tinymce' } },
+      { path: '/richtext/ckeditor', name: 'Ckeditor', component: Ckeditor, meta: { title: 'ckeditor' } }
     ]
   },
   { path: '*', component: Error404, hidden: true }
