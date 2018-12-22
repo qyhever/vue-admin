@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 import '@/router/permission'
 
 import '@/assets/css/base.css'
+import '@/assets/css/common.css'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
 
 import 'iview/dist/styles/iview.css'

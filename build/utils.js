@@ -69,7 +69,9 @@ exports.cssLoaders = function (options) {
     stylus: generateLoaders('stylus', {
       import: path.join(__dirname, '../src/assets/stylus/mixin.styl')
     }),
-    styl: generateLoaders('stylus')
+    styl: generateLoaders('stylus', {
+      import: path.join(__dirname, '../src/assets/stylus/mixin.styl')
+    })
   }
 }
 

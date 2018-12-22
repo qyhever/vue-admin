@@ -45,9 +45,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~@/assets/stylus/common'
 .header
+  border-1px(#eee)
   flex 0 0 60px
-  border-bottom 1px solid #eee
   box-shadow 0 1px 4px rgba(0, 21, 41, 0.08)
   padding 0
   background-color #fff

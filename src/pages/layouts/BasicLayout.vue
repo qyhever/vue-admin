@@ -36,7 +36,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+@import '~@/assets/stylus/common'
 .home {
   height: 100%;
   display: flex;
@@ -54,7 +55,8 @@ export default {
 .bread {
   flex: 0 0 60px;
   padding: 0 20px;
-  border-bottom: 1px solid #e8e8e8;
+  border-1px(#e8e8e8)
+  // border-bottom: 1px solid #e8e8e8;
   line-height: 60px;
   background-color: #fff;
 }

@@ -5,6 +5,7 @@
 </template>
 <script>
 import axios from '@/utils/axios'
+import request from 'axios'
 import { qiniuPrefix, qiniuUploadUrl } from '@/config/config'
 import CKEDITOR from 'CKEDITOR'
 import { message } from 'element-ui'
@@ -89,13 +90,13 @@ export default {
     },
     imageUploadCallback(file, success) {
       axios.get('/upload/qiniuToken').then(res => {
-        const { token } = res.data.data
+        const { token } = res.data
         return Promise.resolve(token)
       }).then(token => {
         const formData = new FormData()
         formData.append('file', file)
         formData.append('token', token)
-        axios.post(qiniuUploadUrl, formData).then(response => {
+        request.post(qiniuUploadUrl, formData).then(response => {
           const { hash } = response.data
           const imageUrl = qiniuPrefix + hash
           success(imageUrl)

@@ -20,6 +20,7 @@
         // 对外暴露上传回调
         editor.settings.imageSelectorCallback(file, success)
         function success(url) {
+          console.log(url)
           editor.insertContent(`<img src="${url}" alt="加载失败" style="max-width: 100%;height: auto;" />`)
         }
       })
