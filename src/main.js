@@ -12,9 +12,8 @@ import '@/router/permission'
 
 import '@/assets/css/base.css'
 import '@/assets/css/common.css'
+import '@/assets/stylus/index.styl'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
-
-import 'iview/dist/styles/iview.css'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
@@ -27,9 +26,17 @@ Vue.component(VeLine.name, VeLine)
 Vue.component(VePie.name, VePie)
 Vue.component(VeGauge.name, VeGauge)
 
-// 日期格式化全局过滤器
-import { format } from './utils/utils'
-Vue.filter('format', format)
+import * as filters from './filters' // global filters
+// register global filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
+import prototypeExtendConfig from './config'
+Vue.use(prototypeExtendConfig)
+
+import prototypeExtendUtil from './prototype'
+Vue.use(prototypeExtendUtil)
 
 /* eslint-disable no-new */
 new Vue({

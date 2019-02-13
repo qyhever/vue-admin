@@ -67,7 +67,7 @@
         label="创建时间"
         min-width="100">
         <template slot-scope="scope">
-          <span>{{scope.row.createTime | format}}</span>
+          <span>{{scope.row.createTime | formatTime}}</span>
         </template>
       </el-table-column>
 
@@ -76,7 +76,7 @@
         label="更新时间"
         min-width="100">
         <template slot-scope="scope">
-          <span>{{scope.row.updateTime | format}}</span>
+          <span>{{scope.row.updateTime | formatTime}}</span>
         </template>
       </el-table-column>
 

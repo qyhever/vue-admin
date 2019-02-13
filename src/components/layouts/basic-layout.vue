@@ -1,16 +1,10 @@
 <template>
   <div class="home">
-    <siderbar></siderbar>
+    <siderbar />
     <el-container class="container">
-      <home-header></home-header>
+      <header-bar />
       <div class="bread">
-        <breadcrumb></breadcrumb>
-        <!-- <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb> -->
+        <breadcrumb />
       </div>
       <el-main>
         <router-view></router-view>
@@ -25,14 +19,14 @@
 </template>
 
 <script>
-import Siderbar from './Siderbar'
-import HomeHeader from './HomeHeader'
-import Breadcrumb from './Breadcrumb'
+import Siderbar from './siderbar'
+import HeaderBar from './header-bar'
+import Breadcrumb from './breadcrumb'
 import { BackTop } from 'iview'
 import BackToTop from '@/components/BackToTop'
 export default {
   name: 'BasiceLayout',
-  components: { Siderbar, HomeHeader, BackToTop, BackTop, Breadcrumb }
+  components: { Siderbar, HeaderBar, BackToTop, BackTop, Breadcrumb }
 }
 </script>
 
@@ -65,7 +59,7 @@ export default {
 }
 .footer {
   flex: 0 0 60px;
-  background-color: #eee;
+  background-color: #fff;
   line-height: 60px;
   text-align: center;
 }

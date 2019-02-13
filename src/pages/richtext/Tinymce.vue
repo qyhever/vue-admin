@@ -15,7 +15,7 @@ export default {
   },
   data () {
     return {
-      content: 'tinymce'
+      content: '生命在于折腾'
     }
   },
   methods: {

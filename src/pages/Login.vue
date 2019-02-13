@@ -6,7 +6,7 @@
       </div>
       <el-form :model="form" status-icon :rules="rules" ref="form">
         <el-form-item prop="userName" size="small">
-          <el-input type="text" v-model.trim="form.userName" placeholder="账号" autocomplete="off"></el-input>
+          <el-input type="text" v-model.trim="form.userName" placeholder="账号" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="password" size="small">
           <el-input
@@ -38,7 +38,7 @@
 
 <script>
 import { getFromPath } from '@/utils/storage'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -57,9 +57,10 @@ export default {
     ...mapGetters(['loading'])
   },
   methods: {
+    ...mapActions(['login']),
     async submitForm(form) {
       await this.$refs[form].validate()
-      await this.$store.dispatch('login', this.form)
+      await this.login(this.form)
       const redirectPath = getFromPath()
       this.$router.replace({ path: redirectPath || '/' })
     }

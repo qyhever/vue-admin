@@ -6,9 +6,7 @@
 <script>
 import axios from '@/utils/axios'
 import request from 'axios'
-import { qiniuPrefix, qiniuUploadUrl } from '@/config/config'
 import CKEDITOR from 'CKEDITOR'
-import { message } from 'element-ui'
 export default {
   name: 'CKEditor',
   props: {
@@ -96,14 +94,14 @@ export default {
         const formData = new FormData()
         formData.append('file', file)
         formData.append('token', token)
-        request.post(qiniuUploadUrl, formData).then(response => {
+        request.post(this.QINIU_UPLOAD_URL, formData).then(response => {
           const { hash } = response.data
-          const imageUrl = qiniuPrefix + hash
+          const imageUrl = this.QINIU_PREFIX + hash
           success(imageUrl)
         })
       }).catch(error => {
         console.log(error)
-        message.error('上传失败')
+        this.$message.error('上传失败')
       })
     }
   }

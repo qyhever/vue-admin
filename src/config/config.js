@@ -2,6 +2,6 @@
 // console.log(process.env.NODE_ENV);
 
 // 七牛域名前缀
-export const qiniuPrefix = 'http://qiniu.qyhever.com/'
+export const QINIU_PREFIX = 'https://qiniu.qyhever.com/'
 
-export const qiniuUploadUrl = 'https://upload-z2.qiniup.com'
+export const QINIU_UPLOAD_URL = 'https://upload-z2.qiniup.com'

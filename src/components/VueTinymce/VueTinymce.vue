@@ -7,7 +7,6 @@
 <script>
 import axios from '@/utils/axios'
 import request from 'axios'
-import { qiniuPrefix, qiniuUploadUrl } from '@/config/config'
 import plugins from './plugins'
 import toolbar from './toolbar'
 import fontFormats from './fontFormats'
@@ -28,7 +27,7 @@ export default {
     },
     value: {
       type: String,
-      default: ''
+      default: '生命在于折腾'
     },
     toolbar: {
       type: Array,
@@ -140,9 +139,9 @@ export default {
         const formData = new FormData()
         formData.append('token', token)
         formData.append('file', file)
-        request.post(qiniuUploadUrl, formData).then(response => {
+        request.post(this.QINIU_UPLOAD_URL, formData).then(response => {
           const { hash } = response.data
-          const imageUrl = qiniuPrefix + hash
+          const imageUrl = this.QINIU_PREFIX + hash
           success(imageUrl)
         })
       }).catch(error => {

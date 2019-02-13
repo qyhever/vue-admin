@@ -28,7 +28,7 @@
       // CKEDITOR.dialog.add('myplugDialog', this.path + 'dialogs/imageupload.js')
       editor.addCommand(pluginName, commandDefinition)
       editor.ui.addButton(pluginName, {
-        label: '打开我的插件',
+        label: '图片',
         icon: this.path + '/images/imageupload.png',
         command: pluginName
       })

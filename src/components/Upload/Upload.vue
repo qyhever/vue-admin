@@ -3,7 +3,7 @@
     v-loading="loading"
     class="uploader"
     :class="{'hover-mask': value}"
-    action="https://up-z2.qiniup.com"
+    :action="QINIU_UPLOAD_URL"
     :show-file-list="false"
     :data="param"
     :on-success="handleSuccess"
@@ -18,7 +18,6 @@
 
 <script>
 import axios from '@/utils/axios'
-import { qiniuPrefix } from '@/config/config'
 export default {
   props: {
     value: String
@@ -35,7 +34,7 @@ export default {
     handleSuccess(res, file) {
       this.loading = false
       const { hash } = res
-      const imageUrl = qiniuPrefix + hash
+      const imageUrl = this.QINIU_PREFIX + hash
       this.$emit('input', imageUrl)
       // this.imageUrl = URL.createObjectURL(file.raw)
     },

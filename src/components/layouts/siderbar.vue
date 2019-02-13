@@ -4,8 +4,10 @@
     :default-active="$route.path"
     :default-openeds="defaultOpeneds"
     class="menu"
-    :collapse="isCollapse"
-    router>
+    background-color="#001529"
+    active-text-color="#fff"
+    text-color="#ffffffa6"
+    :collapse="isCollapse">
     <template v-for="(item) in routers">
 
       <template v-if="item.children">
@@ -69,14 +71,15 @@ export default {
 
 <style scoped>
 .slider {
-  width: 200px;
+  width: 220px;
   height: 100%;
 }
 .menu {
   height: 100%;
+  background-color: #545c64;
 }
 .menu:not(.el-menu--collapse) {
-  width: 200px;
+  width: 220px;
   min-height: 400px;
 }
 .menu i {
@@ -85,5 +88,17 @@ export default {
   width: 24px;
   text-align: center;
   font-size: 18px;
+}
+.menu >>> .el-menu-item.is-active {
+  background-color: #2d8cf0 !important;
+}
+.menu >>> .el-submenu__title i {
+  color: #ffffffa6;
+}
+.menu >>> .el-submenu:hover .el-submenu__title i, .menu >>> .el-submenu:hover .el-submenu__title span {
+  color: #fff;
+}
+.menu >>> .el-menu-item:hover {
+  color: #fff !important;
 }
 </style>

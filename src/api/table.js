@@ -35,3 +35,10 @@ export async function getAllSingersReq() {
   const url = '/singer/all'
   return axios.get(url)
 }
+
+export async function getCustomerListReq(params) {
+  const page = 1
+  const size = 10
+  const url = `/customer`
+  return axios.get(url, { params: { page, size, ...params } })
+}

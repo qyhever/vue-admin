@@ -30,104 +30,15 @@
       </el-table-column>
 
     </el-table>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <p>placeholder</p>
-    <el-tooltip placement="top" content="tooltip">
-      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50" transition-name="fade"/>
-    </el-tooltip>
   </div>
 </template>
 
 <script>
-import BackToTop from '@/components/BackToTop'
 import { exportExcel } from 'xlsx-oc'
 import { createExcelInput } from '@/utils/utils'
 import { excelToJson } from '@/utils/excelToJson'
 export default {
   name: 'import',
-  components: { BackToTop },
   data() {
     return {
       list: [],

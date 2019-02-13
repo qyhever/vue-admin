@@ -39,17 +39,35 @@
       </el-col>
     </el-row>
 
-    <div class="charts">
-      <chart-line></chart-line>
-      <el-row>
-        <el-col :xs="24" :lg="12">
+    <el-row :gutter="20" class="main-row">
+      <el-col :lg="18">
+        <el-card>
+          <chart-line></chart-line>
+        </el-card>
+      </el-col>
+      <el-col :lg="6">
+        <div class="remind-row">
+          <el-card class="remind1">
+            <p>内容</p>
+            <p>内容</p>
+          </el-card>
+          <el-card class="remind2">
+            <p>内容</p>
+            <p>内容</p>
+          </el-card>
+        </div>
+      </el-col>
+      <el-col :xs="24" :lg="12" class="mt20">
+        <el-card>
           <chart-pie></chart-pie>
-        </el-col>
-        <el-col :xs="24" :lg="12">
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :lg="12" class="mt20">
+        <el-card>
           <chart-gauge></chart-gauge>
-        </el-col>
-      </el-row>
-    </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -70,9 +88,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@media screen and (min-width: 320px)
+@media screen and (max-width: 992px)
   .dashboard >>> .el-col-24
-     margin-bottom 10px
+    margin-bottom 10px
 .card
   overflow hidden
   padding 24px
@@ -99,8 +117,15 @@ export default {
     .bold
       font-size 24px
       font-weight 600
-.charts
-  margin-top 22px
-  padding-top 20px
-  background-color #fff
+.main-row
+  margin-top 20px
+.remind-row
+  height 440px
+  display flex
+  flex-direction column
+  .remind1, .remind2
+    width 100%
+    flex 1
+  .remind1
+    margin-bottom 20px
 </style>
