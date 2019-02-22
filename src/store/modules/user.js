@@ -63,12 +63,16 @@ const actions = {
       api.getUserReq(state.userId).then(res => {
         const { data: userInfo } = res
         const { authority } = userInfo
-        const roles = authority ? [authority] : ['admin']
-        if (roles.length > 0) {
-          commit('SET_ROLES', roles)
+        let roles = []
+        if (Array.isArray(authority)) {
+          roles = authority
         }
+        if (typeof authority === 'string') {
+          roles = [authority]
+        }
+        commit('SET_ROLES', roles)
         commit('SET_USER_INFO', userInfo)
-        resolve(userInfo)
+        resolve()
       }).catch(e => {
         reject(e)
       })

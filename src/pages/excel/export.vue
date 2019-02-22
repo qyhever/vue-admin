@@ -4,13 +4,13 @@
       type="primary"
       class="export-btn"
       @click="handleExport"
-      :loading="loading">
+      :loading="exportLoading">
       导出
     </el-button>
     <el-table
       :data="list"
       style="width: 100%"
-      v-loading="loading">
+      v-loading="fetchLoading">
 
       <el-table-column
         prop="singer_id"
@@ -40,7 +40,7 @@
     <el-pagination
       class="pagination"
       background
-      layout="prev, pager, next, jumper"
+      layout="prev, pager, next, sizes, jumper"
       :page-size="size"
       :total="total"
       :current-page="page"
@@ -63,7 +63,9 @@ export default {
       page: 1,
       size: 10,
       total: 0,
-      defaultAvatar
+      defaultAvatar,
+      fetchLoading: false,
+      exportLoading: false
     }
   },
   computed: {
@@ -74,16 +76,20 @@ export default {
   },
   methods: {
     async fetchSingers(params) {
+      this.fetchLoading = true
       const res = await getSingersReq(params)
       if (res.status === 1) {
+        this.fetchLoading = false
         const { list, total } = res.data
         this.list = list
         this.total = total
       }
     },
     async handleExport() {
+      this.exportLoading = true
       const res = await getAllSingersReq()
       if (res.status === 1) {
+        this.exportLoading = false
         const { data: totalList } = res
         const headers = [
           { k: 'singer_id', v: '编号' },

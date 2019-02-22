@@ -1,0 +1,27 @@
+
+/* 三级联动 */
+.area-select-wrap .area-select .area-selected-trigger {
+  padding: 0 20px 0 12px;
+}
+
+/* CKEditor */
+.cke_screen_reader_only {
+  display: none !important;
+}
+
+/* 百度地图 */
+.anchorBL {
+  display: none !important;
+}
+
+/* 高德地图 */
+.amap-logo, .amap-copyright {
+  display: none !important;
+}
+
+.scrollbar-wrapper {
+  background-color: #001529 !important;
+}
+.el-menu {
+  border-right: 0 !important;
+}

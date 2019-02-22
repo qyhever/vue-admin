@@ -32,7 +32,8 @@ export function getFromPath() {
 }
 
 export function setFromPath(value) {
-  return window.localStorage.setItem(FROM_PATH, value)
+  const path = value === '/login' ? '' : value
+  return window.localStorage.setItem(FROM_PATH, path)
 }
 
 export function clearStorage() {

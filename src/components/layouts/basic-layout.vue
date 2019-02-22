@@ -30,15 +30,16 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import '~@/assets/stylus/common'
+<style scoped lang="scss">
 .home {
   height: 100%;
   display: flex;
 }
-.home >>> .el-main {
+.home /deep/ .el-main {
+  position: relative;
   overflow: unset;
   transition: all 0.4s;
+  padding: 0
 }
 .container {
   flex: 1;
@@ -49,12 +50,11 @@ export default {
 .bread {
   flex: 0 0 60px;
   padding: 0 20px;
-  border-1px(#e8e8e8)
-  // border-bottom: 1px solid #e8e8e8;
+  @include border-1px(#e8e8e8);
   line-height: 60px;
   background-color: #fff;
 }
-.bread >>> .el-breadcrumb {
+.bread /deep/ .el-breadcrumb {
   line-height: unset;
 }
 .footer {

@@ -1,5 +1,6 @@
 <template>
-  <el-menu
+  <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-menu
     router
     :default-active="$route.path"
     :default-openeds="defaultOpeneds"
@@ -7,7 +8,9 @@
     background-color="#001529"
     active-text-color="#fff"
     text-color="#ffffffa6"
-    :collapse="isCollapse">
+    :collapse="isCollapse"
+    unique-opened
+    @select="handleSelect">
     <template v-for="(item) in routers">
 
       <template v-if="item.children">
@@ -31,6 +34,7 @@
 
     </template>
   </el-menu>
+  </el-scrollbar>
 </template>
 
 <script>
@@ -59,25 +63,19 @@ export default {
     }
   },
   methods: {
-    handleOpen(key, keyPath) {
-      // console.log(key, keyPath)
-    },
-    handleClose(key, keyPath) {
-      // console.log(key, keyPath)
+    handleSelect(path) {
+      this.$router.push({
+        path,
+        query: {
+          t: +new Date() // 保证每次点击路由的query项都是不一样的，确保会重新刷新view
+        }
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-.slider {
-  width: 220px;
-  height: 100%;
-}
-.menu {
-  height: 100%;
-  background-color: #545c64;
-}
 .menu:not(.el-menu--collapse) {
   width: 220px;
   min-height: 400px;
@@ -92,10 +90,15 @@ export default {
 .menu >>> .el-menu-item.is-active {
   background-color: #2d8cf0 !important;
 }
+.menu >>> .el-submenu.is-active .el-submenu__title,
+.menu >>> .el-submenu.is-active .el-submenu__title i {
+  color: #fff !important;
+}
 .menu >>> .el-submenu__title i {
   color: #ffffffa6;
 }
-.menu >>> .el-submenu:hover .el-submenu__title i, .menu >>> .el-submenu:hover .el-submenu__title span {
+.menu >>> .el-submenu:hover .el-submenu__title i,
+.menu >>> .el-submenu:hover .el-submenu__title span {
   color: #fff;
 }
 .menu >>> .el-menu-item:hover {

@@ -47,9 +47,9 @@
       </el-col>
       <el-col :lg="6">
         <div class="remind-row">
-          <el-card class="remind1">
-            <p>内容</p>
-            <p>内容</p>
+          <el-card class="remind1" v-loading="hitokotoLoading">
+            <p class="ti2">{{hitokoto.hitokoto}}</p>
+            <p class="tar ptb10">{{hitokoto.from + ' - ' + hitokoto.creator}}</p>
           </el-card>
           <el-card class="remind2">
             <p>内容</p>
@@ -72,22 +72,36 @@
 </template>
 
 <script>
-import ChartLine from './ChartLine'
-import ChartPie from './ChartPie'
-import ChartGauge from './ChartGauge'
+import ChartLine from './chart-line'
+import ChartPie from './chart-pie'
+import ChartGauge from './chart-gauge'
 import CountUp from '@/components/CountUp'
+import * as api from '@/api/dashboard'
 export default {
   name: 'dashboard',
   components: { ChartLine, ChartPie, ChartGauge, CountUp },
   data() {
     return {
-      // ..
+      hitokoto: {},
+      hitokotoLoading: false
     }
+  },
+  created() {
+    this.hitokotoLoading = true
+    api.getHitokoto().then(res => {
+      this.hitokotoLoading = false
+      console.log(res)
+      this.hitokoto = res || {}
+    }).catch(() => {
+      this.hitokotoLoading = false
+    })
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+.dashboard
+  padding: 20px
 @media screen and (max-width: 992px)
   .dashboard >>> .el-col-24
     margin-bottom 10px
@@ -95,8 +109,9 @@ export default {
   overflow hidden
   padding 24px
   background-color #fff
+  transition all .4s
   &:hover
-    box-shadow 0 2px 8px rgba(0,0,0,.15)
+    box-shadow 0 2px 20px rgba(0,0,0,.15)
   .fa
     float left
     margin-top 8px
@@ -126,6 +141,22 @@ export default {
   .remind1, .remind2
     width 100%
     flex 1
+    font-size 16px
+    color #fff
+    transition all .4s
+    &:hover
+      box-shadow 0 2px 20px rgba(0,0,0,.15)
   .remind1
+    background-color rgb(247, 151, 214)
     margin-bottom 20px
+    font-size 20px
+    font-family '楷体'
+  .remind2
+    background-color: rgb(143, 201, 251)
+@media screen and (max-width 1200px) {
+  .card-row >>> .el-col:first-of-type,
+  .card-row >>> .el-col:nth-of-type(2) {
+    margin-bottom 10px
+  }
+}
 </style>

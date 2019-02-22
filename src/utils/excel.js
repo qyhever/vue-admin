@@ -93,7 +93,7 @@ export const export_array_to_excel = ({key, data, title, filename, autoWidth}) =
     XLSX.writeFile(wb, filename + '.xlsx');
 }
 
-export const read = (data, type) => {
+export const read = (data, type = 'array') => {
     /* if type == 'base64' must fix data first */
     // const fixedData = fixdata(data)
     // const workbook = XLSX.read(btoa(fixedData), { type: 'base64' })
@@ -103,6 +103,23 @@ export const read = (data, type) => {
     const header = get_header_row(worksheet);
     const results = XLSX.utils.sheet_to_json(worksheet);
     return {header, results};
+}
+
+export const parse = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    if (file) {
+      reader.readAsArrayBuffer(file)
+    }
+    reader.onload = (event) => {
+      const data = event.target.result
+      const result = read(data)
+      resolve(result)
+    }
+    reader.onerror = () => {
+      reject()
+    }
+  })
 }
 
 export default {

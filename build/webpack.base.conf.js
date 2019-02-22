@@ -32,7 +32,9 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   externals: {
-    'CKEDITOR': 'window.CKEDITOR'
+    'CKEDITOR': 'window.CKEDITOR',
+    'AMap': 'AMap',
+    'BMap': 'BMap'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

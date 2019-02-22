@@ -1,5 +1,7 @@
 export default {
   install(Vue) {
-    Vue.prototype.QINIU_PREFIX = 'https://qiniu.qyhever.com/'
+    Vue.prototype.validNumber = (val) => {
+      return /^\d*$/.test(val)
+    }
   }
 }

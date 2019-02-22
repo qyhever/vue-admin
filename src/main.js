@@ -6,13 +6,12 @@ import router from './router'
 import store from './store'
 
 /* eslint-disable import/first */
-Vue.config.productionTip = false
 
 import '@/router/permission'
 
 import '@/assets/css/base.css'
+import '@/assets/css/cover.css'
 import '@/assets/css/common.css'
-import '@/assets/stylus/index.styl'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
 
 import 'element-ui/lib/theme-chalk/index.css'
@@ -34,6 +33,9 @@ Object.keys(filters).forEach(key => {
 
 import prototypeExtendConfig from './config'
 Vue.use(prototypeExtendConfig)
+
+import enums from './enum'
+Vue.use(enums)
 
 import prototypeExtendUtil from './prototype'
 Vue.use(prototypeExtendUtil)

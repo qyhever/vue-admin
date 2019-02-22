@@ -36,21 +36,12 @@
 <script>
 import { exportExcel } from 'xlsx-oc'
 import { createExcelInput } from '@/utils/utils'
-import { excelToJson } from '@/utils/excelToJson'
+import { parse } from '@/utils/excel'
 export default {
   name: 'import',
   data() {
     return {
-      list: [],
-      myBackToTopStyle: {
-        right: '50px',
-        bottom: '50px',
-        width: '40px',
-        height: '40px',
-        'border-radius': '4px',
-        'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
-        background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
-      }
+      list: []
     }
   },
   methods: {
@@ -73,11 +64,11 @@ export default {
     },
     async handleImport() {
       const file = await createExcelInput()
-      const list = await excelToJson(file)
-      if (!list.length) {
-        this.$message.warning('没有数据，请重新导入')
+      const { results } = await parse(file)
+      if (!results.length) {
+        return this.$message.warning('没有数据，请重新导入')
       }
-      list.forEach((v, i) => {
+      results.forEach((v, i) => {
         v.key = i
         v.id = v['编号']
         v.name = v['姓名']
@@ -88,13 +79,14 @@ export default {
         delete v['年龄']
         delete v['地区']
       })
-      this.list = list
+      this.list = results
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.btn-group
-  margin-bottom 22px
+<style lang="scss" scoped>
+.btn-group {
+  margin-bottom: 22px;
+}
 </style>

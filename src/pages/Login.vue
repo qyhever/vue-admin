@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import { getFromPath } from '@/utils/storage'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Login',
@@ -50,7 +49,16 @@ export default {
       rules: {
         userName: [{ required: true, message: '请输入用户名!' }],
         password: [{ required: true, message: '请输入密码!' }]
-      }
+      },
+      redirect: ''
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
+      },
+      immediate: true
     }
   },
   computed: {
@@ -61,39 +69,42 @@ export default {
     async submitForm(form) {
       await this.$refs[form].validate()
       await this.login(this.form)
-      const redirectPath = getFromPath()
-      this.$router.replace({ path: redirectPath || '/' })
+      this.$router.replace({ path: this.redirect || '/dashboard' })
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.login
-  height 100%
-  // background-color #f6f6f6
-  background-color #2d3a4b
-  .form
-    position absolute
-    top 30%
-    left 50%
-    width 320px
-    padding 32px
-    margin-left -192px
-    // box-shadow 0 0 100px rgba(0, 0, 0, 0.1)
-    box-shadow 0 0 100px rgba(255, 255, 255, 0.2)
-    background-color #f6f6f6
-    .logo
-      margin-bottom 24px
-      text-align center
-      .title
-        font-weight 400
-        color #aaa
-        font-family Microsoft Yahei
-    .submit-btn
-      width 100%
-    .account
-      display flex
-      justify-content space-between
-      color #ccc
+<style lang="scss" scoped>
+.login {
+  height: 100%;
+  background-color: #2d3a4b;
+  .form {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 320px;
+    padding: 32px;
+    margin-left: -192px;
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.2);
+    background-color: #f6f6f6;
+    .logo {
+      margin-bottom: 24px;
+      text-align: center;
+      .title {
+        font-weight: 400;
+        color: #aaa;
+        font-family: Microsoft Yahei;
+      }
+    }
+    .submit-btn {
+      width: 100%;
+    }
+    .account {
+      display: flex;
+      justify-content: space-between;
+      color: #ccc;
+    }
+  }
+}
 </style>

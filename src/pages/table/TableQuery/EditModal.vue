@@ -9,7 +9,7 @@
 
     <el-form class="form" ref="form" :rules="rules" :model="form"  label-width="86px">
       <el-form-item label="头像：" prop="avatar">
-        <upload v-model="form.avatar" />
+        <upload-image-single v-model="form.avatar" />
       </el-form-item>
 
       <el-form-item label="姓名：" prop="name">
@@ -60,7 +60,7 @@
 import generateData from '@/utils/generateData.js'
 import { regPhone } from '@/utils/utils'
 import { editReq, detailReq } from '@/api/table'
-import Upload from '@/components/Upload'
+import UploadImageSingle from '@/components/upload-image-single'
 const rules = {
   avatar: [
     { required: true, message: '请上传头像', trigger: 'blur' }
@@ -79,7 +79,7 @@ const rules = {
 }
 export default {
   components: {
-    Upload
+    UploadImageSingle
   },
   props: {
     visible: {

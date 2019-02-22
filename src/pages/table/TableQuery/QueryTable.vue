@@ -7,7 +7,8 @@
       v-loading="loading"
       cell-class-name="table-cell"
       header-cell-class-name="table-cell"
-      @selection-change="handleSelectionChange">
+      @selection-change="handleSelectionChange"
+      @sort-change="handleSortChange">
       <el-table-column
         type="selection"
         fixed>
@@ -37,7 +38,8 @@
       <el-table-column
         prop="age"
         label="年龄"
-        min-width="100">
+        min-width="100"
+        sortable="custom">
       </el-table-column>
 
       <el-table-column
@@ -65,7 +67,8 @@
       <el-table-column
         prop="createTime"
         label="创建时间"
-        min-width="100">
+        min-width="100"
+        sortable="custom">
         <template slot-scope="scope">
           <span>{{scope.row.createTime | formatTime}}</span>
         </template>
@@ -74,7 +77,8 @@
       <el-table-column
         prop="updateTime"
         label="更新时间"
-        min-width="100">
+        min-width="100"
+        sortable="custom">
         <template slot-scope="scope">
           <span>{{scope.row.updateTime | formatTime}}</span>
         </template>
@@ -158,6 +162,14 @@ export default {
     handleSelectionChange(rows) {
       const rowKeys = rows.map(row => row._id)
       this.$emit('selection-change', rowKeys)
+    },
+    handleSortChange(sort) {
+      console.log(sort)
+      this.getList(Object.assign({}, this.values, {
+        page: 1,
+        sortProp: sort.prop,
+        sortOrder: sort.order === 'ascending' ? 1 : -1
+      }))
     },
     handleEdit(_id) {
       this.id = _id

@@ -16,6 +16,10 @@ import Tinymce from '@/pages/richtext/Tinymce'
 // import Ckeditor from '@/pages/richtext/Ckeditor'
 import Echarts from '@/pages/charts/Echarts'
 import Cropper from '@/pages/base/Cropper'
+import Pinot2Coordinate from '@/pages/bmap/pinot-coordinate'
+import SuggestRenderMap from '@/pages/bmap/suggest-render-map'
+import APinot2Coordinate from '@/pages/amap/pinot-coordinate'
+import ASuggestRenderMap from '@/pages/amap/suggest-render-map'
 import Error404 from '@/pages/error/error404'
 
 import LoadingComponent from '@/components/Loading'
@@ -36,7 +40,7 @@ const AsyncComponent = () => ({
 })
 
 // 静态公共路由
-export const constantRouterMap = [
+export const constantRouters = [
   { path: '/', redirect: '/dashboard', hidden: true },
   { path: '/login', name: 'Login', component: Login, meta: { title: '登录' }, hidden: true },
   { path: '/404', component: Error404, hidden: true }
@@ -45,19 +49,18 @@ export const constantRouterMap = [
 // 注册路由
 export default new Router({
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: constantRouters
 })
 
 // 动态鉴权路由
-export const asyncRouterMap = [
+export const asyncRouters = [
   // dashboard -----------------------------------------------------------------------------------
   {
     path: '/',
     name: 'BasicLayout',
     component: BasicLayout,
     meta: {
-      title: '首页',
-      roles: ['admin', 'guest', 'test']
+      title: '首页'
     },
     children: [
       {
@@ -76,8 +79,7 @@ export const asyncRouterMap = [
     icon: 'fa fa-table',
     name: 'Table',
     meta: {
-      title: '表格',
-      roles: ['admin', 'guest']
+      title: '表格'
     },
     children: [
       { path: '/table/query', name: 'TableQuery', component: TableQuery, meta: { title: '查询表格' } },
@@ -91,8 +93,7 @@ export const asyncRouterMap = [
     icon: 'fa fa-file-text-o',
     name: 'Richtext',
     meta: {
-      title: '富文本',
-      roles: ['admin', 'guest']
+      title: '富文本'
     },
     children: [
       { path: '/richtext/tinymce', name: 'Tinymce', component: Tinymce, meta: { title: 'tinymce' } },
@@ -106,8 +107,7 @@ export const asyncRouterMap = [
     icon: 'fa fa-th-large',
     name: 'Base',
     meta: {
-      title: '常用组件',
-      roles: ['admin', 'guest']
+      title: '常用组件'
     },
     children: [
       { path: '/base/cropper', name: 'Cropper', component: Cropper, meta: { title: '图片裁剪' } },
@@ -121,8 +121,7 @@ export const asyncRouterMap = [
     icon: 'fa fa-cloud-upload',
     name: 'Excel',
     meta: {
-      title: 'Excel',
-      roles: ['admin', 'guest']
+      title: 'Excel'
     },
     children: [
       { path: '/excel/import', name: 'Import', component: TableImport, meta: { title: '导入' } },
@@ -136,11 +135,38 @@ export const asyncRouterMap = [
     icon: 'fa fa-area-chart',
     name: 'Charts',
     meta: {
-      title: '图表',
-      roles: ['admin', 'guest']
+      title: '图表'
     },
     children: [
       { path: '/charts/echarts', name: 'Echarts', component: Echarts, meta: { title: 'Echarts' } }
+    ]
+  },
+  // baidu map components -----------------------------------------------------------------------------------
+  {
+    path: '/bmap',
+    component: BasicLayout,
+    icon: 'fa fa-map-marker',
+    name: 'BMap',
+    meta: {
+      title: '百度地图'
+    },
+    children: [
+      { path: '/bmap/point2coordinate', name: 'Pinot2Coordinate', component: Pinot2Coordinate, meta: { title: '鼠标拾取坐标' } },
+      { path: '/bmap/suggest-render-map', name: 'SuggestRenderMap', component: SuggestRenderMap, meta: { title: '关键字输入' } }
+    ]
+  },
+  // gaode map components -----------------------------------------------------------------------------------
+  {
+    path: '/amap',
+    component: BasicLayout,
+    icon: 'fa fa-map',
+    name: 'AMap',
+    meta: {
+      title: '高德地图'
+    },
+    children: [
+      { path: '/amap/point2coordinate', name: 'APinot2Coordinate', component: APinot2Coordinate, meta: { title: '鼠标拾取坐标' } },
+      { path: '/amap/suggest-render-map', name: 'ASuggestRenderMap', component: ASuggestRenderMap, meta: { title: '关键字输入' } }
     ]
   },
   { path: '*', component: Error404, hidden: true }

@@ -41,12 +41,12 @@ export default {
   activated() {
     this.initCkeditor()
   },
-  deactivated() {
-    this.destroyCkeditor()
-  },
-  beforeDestroy() {
-    this.destroyCkeditor()
-  },
+  // deactivated() {
+  //   this.destroyCkeditor()
+  // },
+  // beforeDestroy() {
+  //   this.destroyCkeditor()
+  // },
   methods: {
     initCkeditor() {
       const defaultOptions = {

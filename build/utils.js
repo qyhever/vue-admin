@@ -66,12 +66,8 @@ exports.cssLoaders = function (options) {
         resources: path.join(__dirname, '../src/assets/scss/mixin.scss')
       }
     }),
-    stylus: generateLoaders('stylus', {
-      import: path.join(__dirname, '../src/assets/stylus/mixin.styl')
-    }),
-    styl: generateLoaders('stylus', {
-      import: path.join(__dirname, '../src/assets/stylus/mixin.styl')
-    })
+    stylus: generateLoaders('stylus'),
+    styl: generateLoaders('stylus')
   }
 }
 

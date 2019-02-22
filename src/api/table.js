@@ -42,3 +42,7 @@ export async function getCustomerListReq(params) {
   const url = `/customer`
   return axios.get(url, { params: { page, size, ...params } })
 }
+
+export async function exportExcelReq() {
+  return axios.post('/singer/export')
+}

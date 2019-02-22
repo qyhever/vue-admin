@@ -37,53 +37,63 @@ export default {
         // ...
       } else {
         await this.$store.dispatch('logout')
-        location.reload() // 刷新页面重新实例化 vue-router，否则会重复添加路由
+        setTimeout(() => {
+          window.location.reload() // 刷新页面重新实例化 vue-router，否则会重复添加路由
+        })
       }
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-@import '~@/assets/stylus/common'
-.header
-  border-1px(#eee)
-  flex 0 0 60px
-  box-shadow 0 1px 4px rgba(0, 21, 41, 0.08)
-  padding 0
-  background-color #fff
-  .menu-collapse
-    float left
-    width 60px
-    height 60px
-    .icon-menu
-      width 60px
-      height 60px
-      display flex
-      align-items center
-      justify-content center
-      font-size 22px
-      cursor pointer
-      &:hover
-        color #1890ff
-        background-color rgba(24, 144, 255, 0.15)
-  .user
-    float right
-    width 140px
-    padding 0 20px
-    cursor pointer
-    &:hover
-      color #1890ff
-      background-color rgba(24, 144, 255, 0.15)
-    .userName
-      margin-right 8px
-      line-height 60px
-      vertical-align middle
-    .avatar
-      width 40px
-      height 40px
-      border-radius 50%
-      vertical-align middle
-    .dropdown-menu
-      width 100%
+<style lang="scss" scoped>
+.header {
+  @include border-1px(#eee);
+  flex: 0 0 60px;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  padding: 0;
+  background-color: #fff;
+  .menu-collapse {
+    float: left;
+    width: 60px;
+    height: 60px;
+    .icon-menu {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      &:hover {
+        color: #1890ff;
+        background-color: rgba(24, 144, 255, 0.15);
+      }
+    }
+  }
+  .user {
+    float: right;
+    width: 140px;
+    padding: 0 20px;
+    cursor: pointer;
+    &:hover {
+      color: #1890ff;
+      background-color: rgba(24, 144, 255, 0.15);
+    }
+    .userName {
+      margin-right: 8px;
+      line-height: 60px;
+      vertical-align: middle;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}
 </style>
