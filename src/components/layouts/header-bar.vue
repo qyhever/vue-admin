@@ -21,6 +21,7 @@
 import MenuFold from '@/components/icon/MenuFold'
 import MenuUnfold from '@/components/icon/MenuUnfold'
 import { mapGetters } from 'vuex'
+import bus from '@/bus'
 
 export default {
   name: 'HomeHeader',
@@ -31,6 +32,7 @@ export default {
   methods: {
     toggleMenu() {
       this.$store.commit('TOGGLE_MENU')
+      bus.$emit('toggleMenu')
     },
     async handleDropdown(command) {
       if (command === 'a') {

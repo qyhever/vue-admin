@@ -4,40 +4,27 @@ import Router from 'vue-router'
 /* eslint-disable import/first */
 Vue.use(Router)
 
-import BasicLayout from '@/components/layouts/basic-layout'
-// const Login = () => import('@/pages/Login')
-import Login from '@/pages/login'
-import Dashboard from '@/pages/dashboard'
-import TableQuery from '@/pages/table/TableQuery'
-import TableImport from '@/pages/excel/import'
-import TableExport from '@/pages/excel/export'
-import RegisterUser from '@/pages/table/RegisterUser'
-import Tinymce from '@/pages/richtext/Tinymce'
-// import Ckeditor from '@/pages/richtext/Ckeditor'
-import Echarts from '@/pages/charts/Echarts'
-import Cropper from '@/pages/base/Cropper'
-import Pinot2Coordinate from '@/pages/bmap/pinot-coordinate'
-import SuggestRenderMap from '@/pages/bmap/suggest-render-map'
-import APinot2Coordinate from '@/pages/amap/pinot-coordinate'
-import ASuggestRenderMap from '@/pages/amap/suggest-render-map'
-import Error404 from '@/pages/error/error404'
-
-import LoadingComponent from '@/components/Loading'
-import ErrorComponent from '@/components/ErrorComponent'
-
-const AsyncComponent = () => ({
-  // 需要加载的组件 (应该是一个 `Promise` 对象)
-  component: import('@/pages/richtext/Ckeditor'),
-  // 异步组件加载时使用的组件
-  loading: LoadingComponent,
-  // 加载失败时使用的组件
-  error: ErrorComponent,
-  // 展示加载时组件的延时时间。默认值是 200 (毫秒)
-  delay: 3000,
-  // 如果提供了超时时间且组件加载也超时了，
-  // 则使用加载失败时使用的组件。默认值是：`Infinity`
-  timeout: 4000
-})
+const BasicLayout = () => import('@/components/layouts/basic-layout')
+const Login = () => import('@/pages/login')
+const Dashboard = () => import('@/pages/dashboard')
+const TableQuery = () => import('@/pages/table/query')
+const TableImport = () => import('@/pages/excel/import')
+const TableExport = () => import('@/pages/excel/export')
+const RegisterUser = () => import('@/pages/table/register-user')
+const Tinymce = () => import('@/pages/richtext/Tinymce')
+const Ckeditor = () => import('@/pages/richtext/Ckeditor')
+const ChartColmun = () => import('@/pages/charts/colmun/index')
+const ChartBar = () => import('@/pages/charts/bar/index')
+const ChartLine = () => import('@/pages/charts/line/index')
+const ChartPie = () => import('@/pages/charts/pie/index')
+const ChartCircle = () => import('@/pages/charts/circle/index')
+const Cropper = () => import('@/pages/base/Cropper')
+const Pinot2Coordinate = () => import('@/pages/bmap/pinot-coordinate')
+const SuggestRenderMap = () => import('@/pages/bmap/suggest-render-map')
+const APinot2Coordinate = () => import('@/pages/amap/pinot-coordinate')
+const ASuggestRenderMap = () => import('@/pages/amap/suggest-render-map')
+const Admin = () => import('@/pages/authority/admin')
+const Error404 = () => import('@/pages/error/error404')
 
 // 静态公共路由
 export const constantRouters = [
@@ -97,7 +84,7 @@ export const asyncRouters = [
     },
     children: [
       { path: '/richtext/tinymce', name: 'Tinymce', component: Tinymce, meta: { title: 'tinymce' } },
-      { path: '/richtext/ckeditor', name: 'Ckeditor', component: AsyncComponent, meta: { title: 'ckeditor' } }
+      { path: '/richtext/ckeditor', name: 'Ckeditor', component: Ckeditor, meta: { title: 'ckeditor' } }
     ]
   },
   // base components -----------------------------------------------------------------------------------
@@ -138,7 +125,11 @@ export const asyncRouters = [
       title: '图表'
     },
     children: [
-      { path: '/charts/echarts', name: 'Echarts', component: Echarts, meta: { title: 'Echarts' } }
+      { path: '/echarts/colmun', name: 'Colmun', component: ChartColmun, meta: { title: '柱状图' } },
+      { path: '/echarts/bar', name: 'Bar', component: ChartBar, meta: { title: '条形图' } },
+      { path: '/echarts/line', name: 'Line', component: ChartLine, meta: { title: '折线图' } },
+      { path: '/echarts/pie', name: 'Pie', component: ChartPie, meta: { title: '饼图' } },
+      { path: '/echarts/circle', name: 'ChartCircle', component: ChartCircle, meta: { title: '圆环' } }
     ]
   },
   // baidu map components -----------------------------------------------------------------------------------
@@ -167,6 +158,20 @@ export const asyncRouters = [
     children: [
       { path: '/amap/point2coordinate', name: 'APinot2Coordinate', component: APinot2Coordinate, meta: { title: '鼠标拾取坐标' } },
       { path: '/amap/suggest-render-map', name: 'ASuggestRenderMap', component: ASuggestRenderMap, meta: { title: '关键字输入' } }
+    ]
+  },
+  // admin test components -----------------------------------------------------------------------------------
+  {
+    path: '/authority',
+    component: BasicLayout,
+    icon: 'fa fa-map',
+    name: 'Authority',
+    meta: {
+      title: 'admin页面',
+      roles: ['admin']
+    },
+    children: [
+      { path: '/authority/admin', name: 'Admin', component: Admin, meta: { title: 'admin测试页面' } }
     ]
   },
   { path: '*', component: Error404, hidden: true }

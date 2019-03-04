@@ -40,10 +40,12 @@ const actions = {
         password: encrypt(password)
       }
       api.loginReq(options).then(res => {
-        const { token, userInfo: { _id: userId } } = res.data
-        commit('SET_TOKEN', token)
-        commit('SET_USER_ID', userId)
-        resolve()
+        if (res.success) {
+          const { token, userInfo: { _id: userId } } = res.data
+          commit('SET_TOKEN', token)
+          commit('SET_USER_ID', userId)
+          resolve()
+        }
       }).catch(e => {
         reject(e)
       })
@@ -61,18 +63,20 @@ const actions = {
   getUserInfo({ state, commit }) {
     return new Promise((resolve, reject) => {
       api.getUserReq(state.userId).then(res => {
-        const { data: userInfo } = res
-        const { authority } = userInfo
-        let roles = []
-        if (Array.isArray(authority)) {
-          roles = authority
+        if (res.success) {
+          const { data: userInfo } = res
+          const { authority } = userInfo
+          let roles = []
+          if (Array.isArray(authority)) {
+            roles = authority
+          }
+          if (typeof authority === 'string') {
+            roles = [authority]
+          }
+          commit('SET_ROLES', roles)
+          commit('SET_USER_INFO', userInfo)
+          resolve()
         }
-        if (typeof authority === 'string') {
-          roles = [authority]
-        }
-        commit('SET_ROLES', roles)
-        commit('SET_USER_INFO', userInfo)
-        resolve()
       }).catch(e => {
         reject(e)
       })

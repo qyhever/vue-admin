@@ -78,7 +78,7 @@ export default {
     async fetchSingers(params) {
       this.fetchLoading = true
       const res = await getSingersReq(params)
-      if (res.status === 1) {
+      if (res.success) {
         this.fetchLoading = false
         const { list, total } = res.data
         this.list = list
@@ -88,7 +88,7 @@ export default {
     async handleExport() {
       this.exportLoading = true
       const res = await getAllSingersReq()
-      if (res.status === 1) {
+      if (res.success) {
         this.exportLoading = false
         const { data: totalList } = res
         const headers = [

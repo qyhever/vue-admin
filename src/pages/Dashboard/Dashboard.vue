@@ -51,9 +51,16 @@
             <p class="ti2">{{hitokoto.hitokoto}}</p>
             <p class="tar ptb10">{{hitokoto.from + ' - ' + hitokoto.creator}}</p>
           </el-card>
-          <el-card class="remind2">
-            <p>内容</p>
-            <p>内容</p>
+          <el-card class="remind2" v-loading="weatherLoading">
+            <div class="left">
+              <img v-if="weather.icon_url" :src="weather.icon_url" alt="加载失败">
+              <p class="pl15">{{weather.cond_txt}}</p>
+              <p class="pl15 mt5">{{weather.wind_dir}} {{weather.wind_sc + '级'}}</p>
+            </div>
+            <div class="right tar">
+              <p class="f20">{{weather.fl}} ℃</p>
+              <p class="mt30">{{weather.location}}</p>
+            </div>
           </el-card>
         </div>
       </el-col>
@@ -83,18 +90,35 @@ export default {
   data() {
     return {
       hitokoto: {},
-      hitokotoLoading: false
+      hitokotoLoading: false,
+      weather: {},
+      weatherLoading: false
     }
   },
   created() {
-    this.hitokotoLoading = true
-    api.getHitokoto().then(res => {
-      this.hitokotoLoading = false
-      console.log(res)
-      this.hitokoto = res || {}
-    }).catch(() => {
-      this.hitokotoLoading = false
-    })
+    this.fetchHitokoto()
+    this.fetchWeather()
+  },
+  methods: {
+    fetchHitokoto() {
+      this.hitokotoLoading = true
+      api.getHitokoto().then(data => {
+        this.hitokotoLoading = false
+        this.hitokoto = data || {}
+      }).catch(() => {
+        this.hitokotoLoading = false
+      })
+    },
+    fetchWeather() {
+      this.weatherLoading = true
+      api.weatherToday().then(data => {
+        this.weatherLoading = false
+        console.log(data)
+        this.weather = data || {}
+      }).catch(() => {
+        this.weatherLoading = false
+      })
+    }
   }
 }
 </script>
@@ -153,6 +177,15 @@ export default {
     font-family '楷体'
   .remind2
     background-color: rgb(143, 201, 251)
+    >>> .el-card__body
+      box-sizing border-box
+      display flex
+      width 100%
+      height 100%
+      .left
+        flex 1
+      .right
+        flex 1
 @media screen and (max-width 1200px) {
   .card-row >>> .el-col:first-of-type,
   .card-row >>> .el-col:nth-of-type(2) {

@@ -1,19 +1,18 @@
 <template>
   <div class="home">
     <siderbar />
-    <el-container class="container">
+    <el-container class="container" id="scrollWrapper">
       <header-bar />
       <div class="bread">
         <breadcrumb />
       </div>
       <el-main>
         <router-view></router-view>
-        <!-- <el-tooltip placement="top" content="返回顶部">
-          <back-to-top transitionName="fade" :visibilityHeight="300" :backPosition="50"></back-to-top>
-        </el-tooltip> -->
       </el-main>
       <el-footer class="footer">2018 © 正在缓冲99% 允许侵权</el-footer>
-      <back-top></back-top>
+      <el-tooltip placement="top" content="返回顶部">
+        <back-to-top :dom="scrollEle" transitionName="fade" :visibilityHeight="300" :backPosition="50"></back-to-top>
+      </el-tooltip>
     </el-container>
   </div>
 </template>
@@ -22,11 +21,20 @@
 import Siderbar from './siderbar'
 import HeaderBar from './header-bar'
 import Breadcrumb from './breadcrumb'
-import { BackTop } from 'iview'
 import BackToTop from '@/components/BackToTop'
 export default {
   name: 'BasiceLayout',
-  components: { Siderbar, HeaderBar, BackToTop, BackTop, Breadcrumb }
+  components: { Siderbar, HeaderBar, BackToTop, Breadcrumb },
+  data() {
+    return {
+      scrollEle: null
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.scrollEle = document.querySelector('#scrollWrapper')
+    }, 20)
+  }
 }
 </script>
 
@@ -43,7 +51,7 @@ export default {
 }
 .container {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
   transition: all 0.3s;
   background-color: #f0f2f5;
 }

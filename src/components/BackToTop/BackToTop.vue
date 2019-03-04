@@ -15,6 +15,9 @@
 export default {
   name: 'BackToTop',
   props: {
+    dom: {
+      default: () => window
+    },
     visibilityHeight: {
       type: Number,
       default: 400
@@ -45,43 +48,54 @@ export default {
   data() {
     return {
       visible: false,
-      interval: null,
       isMoving: false
     }
   },
+  watch: {
+    dom(el) {
+      if (el) {
+        el.addEventListener('scroll', this.handleScroll)
+      }
+    }
+  },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
+    if (this.dom) {
+      this.dom.addEventListener('scroll', this.handleScroll)
+    }
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
-    if (this.interval) {
-      clearInterval(this.interval)
+    if (this.dom) {
+      this.dom.removeEventListener('scroll', this.handleScroll)
+    }
+    if (this.timer) {
+      clearInterval(this.timer)
     }
   },
   methods: {
     handleScroll() {
-      this.visible = window.pageYOffset > this.visibilityHeight
+      let alreadyScroll = 0
+      if (this.dom) {
+        alreadyScroll = this.dom.scrollTop
+      } else {
+        alreadyScroll = window.pageYOffset
+      }
+      this.alreadyScroll = alreadyScroll
+      this.visible = alreadyScroll > this.visibilityHeight
     },
     backToTop() {
-      if (this.isMoving) return
-      const start = window.pageYOffset
-      let i = 0
-      this.isMoving = true
-      this.interval = setInterval(() => {
-        const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500))
-        if (next <= this.backPosition) {
-          window.scrollTo(0, this.backPosition)
-          clearInterval(this.interval)
-          this.isMoving = false
+      // this.scrollTo(this.dom, this.alreadyScroll, 0, 800)
+      let scrollTop = this.alreadyScroll
+      let position = 0
+      this.timer = setInterval(() => {
+        let distance = scrollTop - position
+        scrollTop = scrollTop - distance / 6
+        if (Math.abs(distance) > 1) {
+          this.dom.scrollTop = scrollTop
         } else {
-          window.scrollTo(0, next)
+          this.dom.scrollTop = scrollTop
+          clearInterval(this.timer)
         }
-        i++
-      }, 16.7)
-    },
-    easeInOutQuad(t, b, c, d) {
-      if ((t /= d / 2) < 1) return c / 2 * t * t + b
-      return -c / 2 * (--t * (t - 2) - 1) + b
+      }, 16)
     }
   }
 }

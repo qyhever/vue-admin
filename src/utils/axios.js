@@ -23,7 +23,9 @@ instance.interceptors.request.use(config => {
 })
 
 instance.interceptors.response.use(response => {
-  if (response.data.status !== 1) {
+  if (response.data.code === 1) { // 成功
+    response.data.success = true
+  } else {
     Message.closeAll()
     Message.error(response.data.msg)
   }

@@ -13,6 +13,7 @@ import '@/assets/css/base.css'
 import '@/assets/css/cover.css'
 import '@/assets/css/common.css'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
+import '@/assets/scss/layout.scss'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
