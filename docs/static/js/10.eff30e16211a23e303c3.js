@@ -1,0 +1,1 @@
+webpackJsonp([10],{"/EXE":function(e,n){},zM5v:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var a={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("admin")])},staticRenderFns:[]};var i=t("VU/8")({name:"Admin"},a,!1,function(e){t("/EXE")},"data-v-eb4c6caa",null);n.default=i.exports}});
