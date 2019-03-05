@@ -1,2 +1,1 @@
-import Line from './line'
-export default Line
+export { default } from './line'

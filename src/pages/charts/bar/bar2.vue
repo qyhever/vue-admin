@@ -18,12 +18,6 @@ export default {
         legend: {
           data: ['利润', '支出', '收入']
         },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
         xAxis: [
           {
             type: 'value'

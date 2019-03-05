@@ -11,6 +11,9 @@ export default {
     setOption() {
       this.option = {
         backgroundColor: '#f2f2f2',
+        textStyle: {
+          color: '#333'
+        },
         tooltip: {
           trigger: 'axis',
           axisPointer: {

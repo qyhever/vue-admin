@@ -18,12 +18,6 @@ export default {
         legend: {
           data: ['云上贵州', '政法平台', '互联网舆情', '部门交换', '网格化管理']
         },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
         xAxis: {
           type: 'value'
         },

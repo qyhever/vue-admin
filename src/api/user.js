@@ -14,3 +14,7 @@ export async function getUserReq(_id) {
   const url = `/user/${_id}`
   return axios.get(url)
 }
+
+export async function refreshToken() {
+  return axios.get('/refreshToken')
+}

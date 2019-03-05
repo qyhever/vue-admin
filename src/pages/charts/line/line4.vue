@@ -39,12 +39,6 @@ export default {
             color: '#292f39'
           }
         },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
         xAxis: [{
           type: 'category',
           boundaryGap: false,

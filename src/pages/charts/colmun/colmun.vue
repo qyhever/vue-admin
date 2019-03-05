@@ -1,16 +1,16 @@
 <template>
-  <div class="wrapper">
+  <div class="chart-wrapper">
     <el-row style="height: 100%">
-      <el-col :span="12" class="col">
+      <el-col :span="12">
         <column1 ref="column1" />
       </el-col>
-      <el-col :span="12" class="col">
+      <el-col :span="12">
         <column2 ref="column2" />
       </el-col>
-      <el-col :span="12" class="col">
+      <el-col :span="12">
         <column3 ref="column3" />
       </el-col>
-      <el-col :span="12" class="col">
+      <el-col :span="12">
         <column4 ref="column4" />
       </el-col>
     </el-row>
@@ -65,17 +65,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fff;
-  }
-  .col {
-    height: 50%;
-  }
-</style>
