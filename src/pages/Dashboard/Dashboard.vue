@@ -82,7 +82,7 @@
 import ChartLine from './chart-line'
 import ChartPie from './chart-pie'
 import ChartGauge from './chart-gauge'
-import CountUp from '@/components/CountUp'
+import CountUp from '@/components/count-up'
 import * as api from '@/api/dashboard'
 export default {
   name: 'dashboard',
@@ -113,7 +113,6 @@ export default {
       this.weatherLoading = true
       api.weatherToday().then(data => {
         this.weatherLoading = false
-        console.log(data)
         this.weather = data || {}
       }).catch(() => {
         this.weatherLoading = false

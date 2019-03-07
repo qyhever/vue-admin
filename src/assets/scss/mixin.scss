@@ -10,3 +10,10 @@
     background-color: $color;
   }
 }
+
+@mixin bg-hover-canary() {
+  &:hover {
+    color: $--color-primary;
+    background-color: $bg-color-yellow-rgba;
+  }
+}

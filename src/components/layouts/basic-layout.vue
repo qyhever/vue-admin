@@ -3,15 +3,15 @@
     <siderbar />
     <el-container class="container" id="scrollWrapper">
       <header-bar />
-      <div class="bread">
-        <breadcrumb />
-      </div>
+      <breadcrumb />
       <el-main>
-        <router-view></router-view>
+        <transition name="fade-main" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </el-main>
       <el-footer class="footer">2018 © 正在缓冲99% 允许侵权</el-footer>
       <el-tooltip placement="top" content="返回顶部">
-        <back-to-top :dom="scrollEle" transitionName="fade" :visibilityHeight="300" :backPosition="50"></back-to-top>
+        <back-top :dom="scrollEle" transitionName="fade" :visibilityHeight="300" :backPosition="50"></back-top>
       </el-tooltip>
     </el-container>
   </div>
@@ -21,10 +21,10 @@
 import Siderbar from './siderbar'
 import HeaderBar from './header-bar'
 import Breadcrumb from './breadcrumb'
-import BackToTop from '@/components/BackToTop'
+import BackTop from '@/components/back-top'
 export default {
   name: 'BasiceLayout',
-  components: { Siderbar, HeaderBar, BackToTop, Breadcrumb },
+  components: { Siderbar, HeaderBar, BackTop, Breadcrumb },
   data() {
     return {
       scrollEle: null
@@ -43,32 +43,22 @@ export default {
   height: 100%;
   display: flex;
 }
-.home /deep/ .el-main {
-  position: relative;
-  overflow: unset;
-  transition: all 0.4s;
-  padding: 0
-}
 .container {
   flex: 1;
   overflow-y: auto;
   transition: all 0.3s;
   background-color: #f0f2f5;
-}
-.bread {
-  flex: 0 0 60px;
-  padding: 0 20px;
-  @include border-1px(#e8e8e8);
-  line-height: 60px;
-  background-color: #fff;
-}
-.bread /deep/ .el-breadcrumb {
-  line-height: unset;
-}
-.footer {
-  flex: 0 0 60px;
-  background-color: #fff;
-  line-height: 60px;
-  text-align: center;
+  /deep/ .el-main {
+    position: relative;
+    overflow: unset;
+    transition: all 0.4s;
+    padding: 0
+  }
+  .footer {
+    flex: 0 0 60px;
+    background-color: #fff;
+    line-height: 60px;
+    text-align: center;
+  }
 }
 </style>

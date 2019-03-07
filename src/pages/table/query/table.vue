@@ -114,7 +114,7 @@
 <script>
 import { getListReq, deleteReq } from '@/api/table'
 import EditModal from './edit-modal'
-import Divider from '@/components/Divider'
+import Divider from '@/components/divider'
 import { mapGetters } from 'vuex'
 export default {
   name: 'BasicTable',
@@ -164,7 +164,6 @@ export default {
       this.$emit('selection-change', rowKeys)
     },
     handleSortChange(sort) {
-      console.log(sort)
       this.getList(Object.assign({}, this.values, {
         page: 1,
         sortProp: sort.prop,

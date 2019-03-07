@@ -63,7 +63,10 @@ exports.cssLoaders = function (options) {
     scss: generateLoaders('sass').concat({
       loader: 'sass-resources-loader',
       options:{
-        resources: path.join(__dirname, '../src/assets/scss/mixin.scss')
+        resources: [
+          path.join(__dirname, '../src/assets/scss/element-variables.scss'),
+          path.join(__dirname, '../src/assets/scss/mixin.scss')
+        ]
       }
     }),
     stylus: generateLoaders('stylus'),

@@ -10,7 +10,6 @@
         <img class="avatar" :src="userInfo.avatar" :alt="userInfo.userName">
       </div>
       <el-dropdown-menu class="dropdown-menu" slot="dropdown">
-        <!-- <el-dropdown-item command="a">黄金糕</el-dropdown-item> -->
         <el-dropdown-item command="b">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -18,8 +17,8 @@
 </template>
 
 <script>
-import MenuFold from '@/components/icon/MenuFold'
-import MenuUnfold from '@/components/icon/MenuUnfold'
+import MenuFold from '@/components/icon/menu-fold'
+import MenuUnfold from '@/components/icon/menu-unfold'
 import { mapGetters } from 'vuex'
 import bus from '@/bus'
 
@@ -67,10 +66,7 @@ export default {
       justify-content: center;
       font-size: 22px;
       cursor: pointer;
-      &:hover {
-        color: #1890ff;
-        background-color: rgba(24, 144, 255, 0.15);
-      }
+      @include bg-hover-canary();
     }
   }
   .user {
@@ -78,10 +74,7 @@ export default {
     width: 140px;
     padding: 0 20px;
     cursor: pointer;
-    &:hover {
-      color: #1890ff;
-      background-color: rgba(24, 144, 255, 0.15);
-    }
+    @include bg-hover-canary();
     .userName {
       margin-right: 8px;
       line-height: 60px;

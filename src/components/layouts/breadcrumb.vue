@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb separator="/">
+  <el-breadcrumb separator="/" class="bread">
     <el-breadcrumb-item v-for="(item, index) in list" v-if="item.meta.title" :key="item.path">
       <span v-if="!item.redirect || index === list.length - 1">{{item.meta.title}}</span>
       <a v-else @click.prevent="handleClick(item)">{{item.meta.title}}</a>
@@ -50,6 +50,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped lang="scss">
+  .bread {
+    flex: 0 0 60px;
+    padding: 0 20px;
+    @include border-1px(#e8e8e8);
+    line-height: 60px;
+    background-color: #fff;
+  }
 </style>

@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .menu:not(.el-menu--collapse) {
   width: 220px;
   min-height: 400px;
@@ -87,21 +87,21 @@ export default {
   text-align: center;
   font-size: 18px;
 }
-.menu >>> .el-menu-item.is-active {
-  background-color: #2d8cf0 !important;
+.menu /deep/ .el-menu-item.is-active {
+  background-color: $--color-primary !important;
 }
-.menu >>> .el-submenu.is-active .el-submenu__title,
-.menu >>> .el-submenu.is-active .el-submenu__title i {
+.menu /deep/ .el-submenu.is-active .el-submenu__title,
+.menu /deep/ .el-submenu.is-active .el-submenu__title i {
   color: #fff !important;
 }
-.menu >>> .el-submenu__title i {
+.menu /deep/ .el-submenu__title i {
   color: #ffffffa6;
 }
-.menu >>> .el-submenu:hover .el-submenu__title i,
-.menu >>> .el-submenu:hover .el-submenu__title span {
+.menu /deep/ .el-submenu:hover .el-submenu__title i,
+.menu /deep/ .el-submenu:hover .el-submenu__title span {
   color: #fff;
 }
-.menu >>> .el-menu-item:hover {
+.menu /deep/ .el-menu-item:hover {
   color: #fff !important;
 }
 </style>

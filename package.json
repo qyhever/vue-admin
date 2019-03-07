@@ -15,6 +15,7 @@
     "countup": "^1.8.2",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.6",
+    "font-awesome": "^4.7.0",
     "iview": "^3.1.5",
     "moment": "^2.22.2",
     "node-forge": "^0.7.6",

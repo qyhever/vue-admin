@@ -1,1 +1,1 @@
-export { default } from './Cropper.vue'
+export { default } from './cropper'

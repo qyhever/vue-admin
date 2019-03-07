@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
 import { MessageBox, Message } from 'element-ui'
-import { getToken, setFromPath } from '@/utils/storage'
+import { getToken } from '@/utils/storage'
 
 // axios.defaults.headers.post['Content-Type'] = 'application/json charset=UTF-8'
 const instance = axios.create({
@@ -41,7 +41,6 @@ instance.interceptors.response.use(response => {
       callback: action => {
         if (action === 'confirm') {
           store.dispatch('logout').then(() => {
-            setFromPath(router.currentRoute.fullPath)
             router.replace({
               path: '/login',
               query: { redirect: router.currentRoute.fullPath }

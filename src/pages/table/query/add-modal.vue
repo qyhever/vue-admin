@@ -59,7 +59,7 @@
 import generateData from '@/utils/generateData.js'
 import { regPhone } from '@/utils/utils'
 import { addReq } from '@/api/table'
-import Upload from '@/components/Upload'
+import Upload from '@/components/upload'
 const rules = {
   avatar: [
     { required: true, message: '请上传头像', trigger: 'blur' }

@@ -1,21 +1,18 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
 
 /* eslint-disable import/first */
-
 import '@/router/permission'
 
-import '@/assets/css/base.css'
-import '@/assets/css/cover.css'
-import '@/assets/css/common.css'
-import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
+import '@/assets/css/index.css'
+import 'font-awesome/css/font-awesome.css'
 import '@/assets/scss/layout.scss'
+import '@/assets/scss/transition.scss'
 
-import 'element-ui/lib/theme-chalk/index.css'
+import '@/assets/scss/element-variables.scss'
+// import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
@@ -34,7 +31,7 @@ Object.keys(filters).forEach(key => {
 
 import prototypeExtendConfig from './config'
 Vue.use(prototypeExtendConfig)
-
+// register global enum.
 import enums from './enum'
 Vue.use(enums)
 

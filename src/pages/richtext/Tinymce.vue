@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import VueTinymce from '@/components/VueTinymce'
+import VueTinymce from '@/components/vue-tinymce'
 export default {
   name: 'Tinymce',
   components: {

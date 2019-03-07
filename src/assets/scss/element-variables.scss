@@ -1,0 +1,11 @@
+/* 改变主题色变量 */
+$--color-primary: #f9c700;
+
+$bg-color-yellow-rgba: rgba(249, 199, 0, 0.1);
+$bg-color-blue-rgba: rgba(24, 144, 255, 0.15);
+$color-blue: #1890ff;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

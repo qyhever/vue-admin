@@ -11,14 +11,15 @@ const TableQuery = () => import('@/pages/table/query')
 const TableImport = () => import('@/pages/excel/import')
 const TableExport = () => import('@/pages/excel/export')
 const RegisterUser = () => import('@/pages/table/register-user')
-const Tinymce = () => import('@/pages/richtext/Tinymce')
-const Ckeditor = () => import('@/pages/richtext/Ckeditor')
+const Tinymce = () => import('@/pages/richtext/tinymce')
+const Ckeditor = () => import('@/pages/richtext/ckeditor')
 const ChartColmun = () => import('@/pages/charts/colmun')
 const ChartBar = () => import('@/pages/charts/bar')
 const ChartLine = () => import('@/pages/charts/line')
 const ChartPie = () => import('@/pages/charts/pie')
 const ChartCircle = () => import('@/pages/charts/circle')
-const Cropper = () => import('@/pages/base/Cropper')
+const ChartRadar = () => import('@/pages/charts/radar')
+const Cropper = () => import('@/pages/base/cropper')
 const Pinot2Coordinate = () => import('@/pages/bmap/pinot-coordinate')
 const SuggestRenderMap = () => import('@/pages/bmap/suggest-render-map')
 const APinot2Coordinate = () => import('@/pages/amap/pinot-coordinate')
@@ -129,7 +130,8 @@ export const asyncRouters = [
       { path: '/echarts/bar', name: 'Bar', component: ChartBar, meta: { title: '条形图' } },
       { path: '/echarts/line', name: 'Line', component: ChartLine, meta: { title: '折线图' } },
       { path: '/echarts/pie', name: 'Pie', component: ChartPie, meta: { title: '饼图' } },
-      { path: '/echarts/circle', name: 'ChartCircle', component: ChartCircle, meta: { title: '圆环' } }
+      { path: '/echarts/circle', name: 'ChartCircle', component: ChartCircle, meta: { title: '圆环' } },
+      { path: '/echarts/radar', name: 'Radar', component: ChartRadar, meta: { title: '雷达图' } }
     ]
   },
   // baidu map components -----------------------------------------------------------------------------------
