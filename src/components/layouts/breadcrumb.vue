@@ -25,10 +25,14 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(v => !v.name || v.name !== 'Dashboard')
+      let matched = this.$route.matched.filter(
+        v => !v.name || v.name !== 'Dashboard'
+      )
       const first = matched[0]
       if (first && first.name.trim().toLocaleLowerCase() !== 'dashboard') {
-        matched = [{path: '/dashboard', meta: {title: '首页'}}].concat(matched)
+        matched = [{ path: '/dashboard', meta: { title: '首页' } }].concat(
+          matched
+        )
       }
       this.list = matched
     },
@@ -51,11 +55,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .bread {
-    flex: 0 0 60px;
-    padding: 0 20px;
-    @include border-1px(#e8e8e8);
-    line-height: 60px;
-    background-color: #fff;
-  }
+.bread {
+  flex: 0 0 60px;
+  padding: 0 20px;
+  @include border-1px(#e8e8e8);
+  line-height: 60px !important;
+  background-color: #fff;
+}
 </style>

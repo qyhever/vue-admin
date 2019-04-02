@@ -102,21 +102,27 @@ export default {
   methods: {
     fetchHitokoto() {
       this.hitokotoLoading = true
-      api.getHitokoto().then(data => {
-        this.hitokotoLoading = false
-        this.hitokoto = data || {}
-      }).catch(() => {
-        this.hitokotoLoading = false
-      })
+      api
+        .getHitokoto()
+        .then(data => {
+          this.hitokotoLoading = false
+          this.hitokoto = data || {}
+        })
+        .catch(() => {
+          this.hitokotoLoading = false
+        })
     },
     fetchWeather() {
       this.weatherLoading = true
-      api.weatherToday().then(data => {
-        this.weatherLoading = false
-        this.weather = data || {}
-      }).catch(() => {
-        this.weatherLoading = false
-      })
+      api
+        .weatherToday()
+        .then(data => {
+          this.weatherLoading = false
+          this.weather = data || {}
+        })
+        .catch(() => {
+          this.weatherLoading = false
+        })
     }
   }
 }
@@ -124,7 +130,7 @@ export default {
 
 <style lang="stylus" scoped>
 .dashboard
-  padding: 20px
+  padding 20px
 @media screen and (max-width: 992px)
   .dashboard >>> .el-col-24
     margin-bottom 10px
@@ -132,9 +138,9 @@ export default {
   overflow hidden
   padding 24px
   background-color #fff
-  transition all .4s
+  transition all 0.4s
   &:hover
-    box-shadow 0 2px 20px rgba(0,0,0,.15)
+    box-shadow 0 2px 20px rgba(0, 0, 0, 0.15)
   .fa
     float left
     margin-top 8px
@@ -166,16 +172,16 @@ export default {
     flex 1
     font-size 16px
     color #fff
-    transition all .4s
+    transition all 0.4s
     &:hover
-      box-shadow 0 2px 20px rgba(0,0,0,.15)
+      box-shadow 0 2px 20px rgba(0, 0, 0, 0.15)
   .remind1
     background-color rgb(247, 151, 214)
     margin-bottom 20px
     font-size 20px
     font-family '楷体'
   .remind2
-    background-color: rgb(143, 201, 251)
+    background-color rgb(143, 201, 251)
     >>> .el-card__body
       box-sizing border-box
       display flex
@@ -185,10 +191,7 @@ export default {
         flex 1
       .right
         flex 1
-@media screen and (max-width 1200px) {
-  .card-row >>> .el-col:first-of-type,
-  .card-row >>> .el-col:nth-of-type(2) {
+@media screen and (max-width: 1200px)
+  .card-row >>> .el-col:first-of-type, .card-row >>> .el-col:nth-of-type(2)
     margin-bottom 10px
-  }
-}
 </style>

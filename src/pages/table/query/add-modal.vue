@@ -1,5 +1,6 @@
 <template>
   <el-dialog
+    v-dialogDrag
     title="添加"
     :visible.sync="visible"
     width="640px"
@@ -61,9 +62,7 @@ import { regPhone } from '@/utils/utils'
 import { addReq } from '@/api/table'
 import Upload from '@/components/upload'
 const rules = {
-  avatar: [
-    { required: true, message: '请上传头像', trigger: 'blur' }
-  ],
+  avatar: [{ required: true, message: '请上传头像', trigger: 'blur' }],
   name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
   nickName: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
   phone: [

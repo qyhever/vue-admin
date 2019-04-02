@@ -61,9 +61,7 @@ import { regPhone } from '@/utils/utils'
 import { editReq, detailReq } from '@/api/table'
 import UploadImageSingle from '@/components/upload-image-single'
 const rules = {
-  avatar: [
-    { required: true, message: '请上传头像', trigger: 'blur' }
-  ],
+  avatar: [{ required: true, message: '请上传头像', trigger: 'blur' }],
   name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
   nickName: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
   phone: [
@@ -121,7 +119,7 @@ export default {
     async submitForm() {
       try {
         await this.$refs.form.validate()
-        const params = {...this.form, _id: this.id}
+        const params = { ...this.form, _id: this.id }
         const res = await editReq(params)
         if (res.success) {
           this.handleClose()

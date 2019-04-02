@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <register-user-form :values="values" @form-query="formQuery" @handle-refresh="handleRefresh" />
     <register-user-table ref="table" :values="values" />
   </div>
@@ -24,7 +24,7 @@ export default {
       this.values = values
     },
     handleRefresh() {
-      this.$refs.table.getList({ page: 1, size: 10 })
+      this.values = {}
     }
   }
 }

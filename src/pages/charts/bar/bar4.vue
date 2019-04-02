@@ -10,8 +10,14 @@ export default {
     setOption() {
       this.option = {
         yAxis: {
-          data: ['用户撞车', 'SQL注入检测', '机器人登录',
-            '账号盗用', 'web高频攻击', '端口扫描', '内网连接…',
+          data: [
+            '用户撞车',
+            'SQL注入检测',
+            '机器人登录',
+            '账号盗用',
+            'web高频攻击',
+            '端口扫描',
+            '内网连接…',
             '邮件外发'
           ],
           axisTick: {
@@ -19,33 +25,37 @@ export default {
           }
         },
 
-        xAxis: [{
-          axisTick: {
-            show: false
-          },
-          type: 'value',
-          // max: 100,
-          splitNumber: 5,
-          axisLabel: {
-            formatter: '{value}%'
-          }
-        }],
-        series: [{
-          name: '销量',
-          type: 'bar',
-          barWidth: '55%',
-          label: {
-            normal: {
-              show: true,
-              position: 'right',
-              formatter: '{c}%',
-              textStyle: {
-                color: 'black'
-              }
+        xAxis: [
+          {
+            axisTick: {
+              show: false
+            },
+            type: 'value',
+            // max: 100,
+            splitNumber: 5,
+            axisLabel: {
+              formatter: '{value}%'
             }
-          },
-          data: [45, 22, 33, 44, 55, 66, 77, 88]
-        }]
+          }
+        ],
+        series: [
+          {
+            name: '销量',
+            type: 'bar',
+            barWidth: '55%',
+            label: {
+              normal: {
+                show: true,
+                position: 'right',
+                formatter: '{c}%',
+                textStyle: {
+                  color: 'black'
+                }
+              }
+            },
+            data: [45, 22, 33, 44, 55, 66, 77, 88]
+          }
+        ]
       }
     },
     refresh() {

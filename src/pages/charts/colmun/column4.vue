@@ -32,7 +32,6 @@ export default {
           textStyle: {
             color: '#FFFFFF'
           }
-
         },
         calculable: true,
         xAxis: [
@@ -98,7 +97,6 @@ export default {
             barMaxWidth: 15,
             barGap: '10%',
             data: [421, 356, 719, 658, 458, 443, 620, 416, 551, 721, 466, 632]
-
           },
           {
             name: '办理率',
@@ -108,7 +106,8 @@ export default {
             type: 'line',
             color: '#ffdb5c',
             data: [11, 4, 7, 8, 6, 2, 10, 8, 10, 5, 5, 4]
-          }]
+          }
+        ]
       }
     },
     refresh() {

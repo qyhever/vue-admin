@@ -4,7 +4,6 @@ import { encrypt } from '@/utils/md5'
 
 const state = {
   token: storage.getToken(),
-  userId: storage.getUserId(),
   userInfo: {},
   roles: []
 }
@@ -18,10 +17,6 @@ const mutations = {
   SET_TOKEN(state, token) {
     state.token = token
     storage.setToken(token)
-  },
-  SET_USER_ID(state, userId) {
-    state.userId = userId
-    storage.setUserId(userId)
   },
   SET_USER_INFO(state, info) {
     state.userInfo = info
@@ -41,9 +36,8 @@ const actions = {
       }
       api.loginReq(options).then(res => {
         if (res.success) {
-          const { token, userInfo: { _id: userId } } = res.data
+          const { token } = res.data
           commit('SET_TOKEN', token)
-          commit('SET_USER_ID', userId)
           resolve()
         }
       }).catch(e => {
@@ -51,18 +45,17 @@ const actions = {
       })
     })
   },
-  logout({ commit, ...root }) {
+  logout({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
-      commit('SET_USER_ID', '')
       commit('SET_ROLES', [])
       storage.clearStorage()
       resolve()
     })
   },
-  getUserInfo({ state, commit }) {
+  getUserInfo({ _, commit }) {
     return new Promise((resolve, reject) => {
-      api.getUserReq(state.userId).then(res => {
+      api.getUserReq().then(res => {
         if (res.success) {
           const { data: userInfo } = res
           const { authority } = userInfo

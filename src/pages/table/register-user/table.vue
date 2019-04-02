@@ -74,13 +74,13 @@
     <el-pagination
       class="pagination"
       background
-      layout="prev, pager, next, sizes, jumper"
-      :current-page="page"
-      :page-size="size"
+      layout="total, prev, pager, next, sizes, jumper"
+      :current-page="params.page"
+      :page-size="params.size"
       :total="total"
       @current-change="handleCurrentChange"
-      @size-change="handleSizeChange">
-    </el-pagination>
+      @size-change="handleSizeChange"
+    />
 
   </div>
 </template>
@@ -92,28 +92,22 @@ export default {
   props: {
     values: {
       type: Object,
-      default() {
-        return {}
-      }
+      default: () => {}
     }
   },
   data() {
     return {
       list: [],
-      page: 1,
-      size: 10,
-      total: 0
+      total: 0,
+      params: {
+        page: 1,
+        size: 10
+      }
     }
   },
   watch: {
-    values(val) {
-      if (!Object.keys(val).length) return
-      const params = {
-        page: 1,
-        size: 10,
-        ...val
-      }
-      this.getList(params)
+    values() {
+      this.reset()
     }
   },
   computed: {
@@ -123,23 +117,27 @@ export default {
     this.getList()
   },
   methods: {
-    async getList(params) {
+    async getList() {
+      const params = Object.assign({}, this.params, this.values)
       const res = await getCustomerListReq(params)
       if (res.success) {
         const { rows, total } = res.data
         this.list = rows
         this.total = total
-        params && params.page && (this.page = params.page)
-        params && params.size && (this.size = params.size)
       }
     },
     handleCurrentChange(page) {
-      const { size } = this
-      this.getList({ page, size, ...this.values })
+      this.params.page = page
+      this.getList()
     },
     handleSizeChange(size) {
-      const { page } = this
-      this.getList({ page, size, ...this.values })
+      this.params.size = size
+      this.getList()
+    },
+    reset() {
+      this.params.page = 1
+      this.params.size = 10
+      this.getList()
     }
   }
 }

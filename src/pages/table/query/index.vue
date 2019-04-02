@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <query-form
       :values="values"
       :ids="rowKeys"
@@ -35,7 +35,6 @@ export default {
     },
     handleRefresh() {
       this.values = {}
-      // this.$refs.table.getList()
     }
   }
 }

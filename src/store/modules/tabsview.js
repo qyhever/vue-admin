@@ -1,5 +1,5 @@
 const state = {
-  visitedViews: [{path: '/dashboard', title: 'dashboard'}]
+  visitedViews: [{ path: '/dashboard', title: 'dashboard' }]
 }
 
 const getters = {
@@ -27,7 +27,7 @@ const mutations = {
 }
 
 const actions = {
-  delVisitedViews({state, commit}, route) {
+  delVisitedViews({ state, commit }, route) {
     commit('DEL_VISITED_VIEWS', route)
     return Promise.resolve([...state.visitedViews])
   }

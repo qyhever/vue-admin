@@ -11,7 +11,7 @@ import 'font-awesome/css/font-awesome.css'
 import '@/assets/scss/layout.scss'
 import '@/assets/scss/transition.scss'
 
-import '@/assets/scss/element-variables.scss'
+// import '@/assets/scss/element-variables.scss'
 // import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
@@ -38,11 +38,16 @@ Vue.use(enums)
 import prototypeExtendUtil from './prototype'
 Vue.use(prototypeExtendUtil)
 
+import * as directives from './directives'
+// register global directives.
+Object.keys(directives).forEach(key => {
+  Vue.directive(key, directives[key])
+})
+import './icons'
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')

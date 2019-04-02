@@ -2,22 +2,19 @@
   <div class="table">
     <el-table
       :data="list"
-      style="width: 99%"
-      show-overflow-tooltip
       v-loading="loading"
-      cell-class-name="table-cell"
-      header-cell-class-name="table-cell"
       @selection-change="handleSelectionChange"
       @sort-change="handleSortChange">
       <el-table-column
         type="selection"
+        width="60"
         fixed>
       </el-table-column>
 
       <el-table-column
         prop="avatar"
         label="头像"
-        min-width="100"
+        width="100"
         fixed>
         <template slot-scope="scope">
           <img class="table-avatar" :src="scope.row.avatar" alt="加载失败">
@@ -26,27 +23,23 @@
 
       <el-table-column
         prop="name"
-        label="姓名"
-        min-width="100">
+        label="姓名">
       </el-table-column>
 
       <el-table-column
         prop="nickName"
-        label="昵称"
-        min-width="100">
+        label="昵称">
       </el-table-column>
 
       <el-table-column
         prop="age"
         label="年龄"
-        min-width="100"
         sortable="custom">
       </el-table-column>
 
       <el-table-column
         prop="gender"
-        label="性别"
-        min-width="100">
+        label="性别">
         <template slot-scope="scope">
           <span v-if="scope.row.gender === '0'">女</span>
           <span v-else>男</span>
@@ -56,19 +49,19 @@
       <el-table-column
         prop="phone"
         label="手机号"
-        min-width="100">
+        width="120">
       </el-table-column>
 
       <el-table-column
         prop="email"
         label="e-mail"
-        min-width="100">
+        width="180">
       </el-table-column>
 
       <el-table-column
         prop="createTime"
         label="创建时间"
-        min-width="100"
+        width="180"
         sortable="custom">
         <template slot-scope="scope">
           <span>{{scope.row.createTime | formatTime}}</span>
@@ -78,15 +71,16 @@
       <el-table-column
         prop="updateTime"
         label="更新时间"
-        min-width="100"
+        width="180"
         sortable="custom">
         <template slot-scope="scope">
           <span>{{scope.row.updateTime | formatTime}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="操作"
-      min-width="100">
+      <el-table-column
+        label="操作"
+        width="140">
         <template slot-scope="scope">
           <a href="javascript:" @click="handleEdit(scope.row._id)">编辑</a>
           <divider />
@@ -99,14 +93,15 @@
       v-show="pagingVisible"
       class="pagination"
       background
-      layout="prev, pager, next, jumper"
-      :page-size="10"
+      layout="total, prev, pager, next, sizes, jumper"
+      :current-page="params.page"
+      :page-size="params.size"
       :total="total"
-      :current-page="page"
-      @current-change="handleCurrentChange">
-    </el-pagination>
+      @current-change="handleCurrentChange"
+      @size-change="handleSizeChange"
+    />
 
-    <edit-modal ref="editModal" :id="id" @handle-refresh="refreshList" />
+    <edit-modal ref="editModal" :id="id" @handle-refresh="getList" />
 
   </div>
 </template>
@@ -119,23 +114,26 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'BasicTable',
   components: { Divider, EditModal },
-  props: ['values'],
+  props: {
+    values: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       list: [],
-      page: 1,
       total: 0,
-      id: ''
+      id: '',
+      params: {
+        page: 1,
+        size: 10
+      }
     }
   },
   watch: {
-    $route() {
-      const query = this.$route.query
-      this.getList({ ...query, ...this.values })
-    },
-    values(val) {
-      const query = this.$route.query
-      this.getList({ ...query, ...val })
+    values() {
+      this.reset()
     }
   },
   computed: {
@@ -145,13 +143,11 @@ export default {
     }
   },
   mounted() {
-    const { page } = this.$route.query
-    this.getList({ page }).then(() => {
-      this.page = +page
-    })
+    this.getList()
   },
   methods: {
-    async getList(params) {
+    async getList() {
+      const params = Object.assign({}, this.params, this.values)
       const res = await getListReq(params)
       if (res.success) {
         const { list, total } = res.data
@@ -164,11 +160,16 @@ export default {
       this.$emit('selection-change', rowKeys)
     },
     handleSortChange(sort) {
-      this.getList(Object.assign({}, this.values, {
-        page: 1,
-        sortProp: sort.prop,
-        sortOrder: sort.order === 'ascending' ? 1 : -1
-      }))
+      this.params.page = 1
+      this.params.size = 10
+      if (sort.prop && sort.order) {
+        this.params.sortProp = sort.prop
+        this.params.sortOrder = sort.order === 'ascending' ? 1 : -1
+      } else {
+        this.params.sortProp = null
+        this.params.sortOrder = null
+      }
+      this.getList()
     },
     handleEdit(_id) {
       this.id = _id
@@ -185,20 +186,24 @@ export default {
         if (res.success) {
           this.$message.closeAll()
           this.$message({ type: 'success', message: '删除成功' })
-          const query = this.$route.query
-          this.getList({ ...query, ...this.values })
+          this.getList()
         }
       } catch (e) {
         // ...
       }
     },
     handleCurrentChange(page) {
-      // this.$router.push({ pathname: '/table/basic', query: { page } })
-      this.getList({ page, ...this.values })
+      this.params.page = page
+      this.getList()
     },
-    refreshList() {
-      const query = this.$route.query
-      this.getList({ ...query, ...this.values })
+    handleSizeChange(size) {
+      this.params.size = size
+      this.getList()
+    },
+    reset() {
+      this.params.page = 1
+      this.params.size = 10
+      this.getList()
     }
   }
 }
@@ -215,10 +220,6 @@ export default {
 }
 .table >>> .cell {
   text-align: center;
-}
-
-.table >>> .el-table__body-wrapper {
-  overflow-x: auto;
 }
 .pagination {
   padding-top: 22px;

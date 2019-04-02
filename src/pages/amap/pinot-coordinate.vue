@@ -27,7 +27,8 @@ export default {
 </script>
 
 <style scoped>
-.wrapper, #container {
+.wrapper,
+#container {
   height: 100%;
 }
 

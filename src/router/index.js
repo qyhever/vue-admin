@@ -4,28 +4,37 @@ import Router from 'vue-router'
 /* eslint-disable import/first */
 Vue.use(Router)
 
-const BasicLayout = () => import('@/components/layouts/basic-layout')
-const Login = () => import('@/pages/login')
-const Dashboard = () => import('@/pages/dashboard')
-const TableQuery = () => import('@/pages/table/query')
-const TableImport = () => import('@/pages/excel/import')
-const TableExport = () => import('@/pages/excel/export')
-const RegisterUser = () => import('@/pages/table/register-user')
-const Tinymce = () => import('@/pages/richtext/tinymce')
-const Ckeditor = () => import('@/pages/richtext/ckeditor')
-const ChartColmun = () => import('@/pages/charts/colmun')
-const ChartBar = () => import('@/pages/charts/bar')
-const ChartLine = () => import('@/pages/charts/line')
-const ChartPie = () => import('@/pages/charts/pie')
-const ChartCircle = () => import('@/pages/charts/circle')
-const ChartRadar = () => import('@/pages/charts/radar')
-const Cropper = () => import('@/pages/base/cropper')
-const Pinot2Coordinate = () => import('@/pages/bmap/pinot-coordinate')
-const SuggestRenderMap = () => import('@/pages/bmap/suggest-render-map')
-const APinot2Coordinate = () => import('@/pages/amap/pinot-coordinate')
-const ASuggestRenderMap = () => import('@/pages/amap/suggest-render-map')
-const Admin = () => import('@/pages/authority/admin')
-const Error404 = () => import('@/pages/error/error404')
+import BasicLayout from '@/components/layouts/basic-layout'
+import Login from '@/pages/login'
+// table
+import Dashboard from '@/pages/dashboard'
+import TableQuery from '@/pages/table/query'
+import RegisterUser from '@/pages/table/register-user'
+import Select from '@/pages/table/select'
+// excel
+import TableImport from '@/pages/excel/import'
+import TableExport from '@/pages/excel/export'
+// richtext
+import Tinymce from '@/pages/richtext/tinymce'
+import Ckeditor from '@/pages/richtext/ckeditor'
+// charts
+import ChartColmun from '@/pages/charts/colmun'
+import ChartBar from '@/pages/charts/bar'
+import ChartLine from '@/pages/charts/line'
+import ChartPie from '@/pages/charts/pie'
+import ChartCircle from '@/pages/charts/circle'
+import ChartRadar from '@/pages/charts/radar'
+import ChartMap from '@/pages/charts/map'
+// base components
+import Cropper from '@/pages/base/cropper'
+import Clipboard from '@/pages/base/clipboard'
+// map
+import Pinot2Coordinate from '@/pages/bmap/pinot-coordinate'
+import SuggestRenderMap from '@/pages/bmap/suggest-render-map'
+import APinot2Coordinate from '@/pages/amap/pinot-coordinate'
+import ASuggestRenderMap from '@/pages/amap/suggest-render-map'
+import Admin from '@/pages/authority/admin'
+import Error404 from '@/pages/error/error404'
 
 // 静态公共路由
 export const constantRouters = [
@@ -71,7 +80,8 @@ export const asyncRouters = [
     },
     children: [
       { path: '/table/query', name: 'TableQuery', component: TableQuery, meta: { title: '查询表格' } },
-      { path: '/table/user', name: 'RegisterUser', component: RegisterUser, meta: { title: '注册用户' } }
+      { path: '/table/user', name: 'RegisterUser', component: RegisterUser, meta: { title: '注册用户' } },
+      { path: '/table/select', name: 'Select', component: Select, meta: { title: '表格选中' } }
     ]
   },
   // richtext -----------------------------------------------------------------------------------
@@ -99,7 +109,8 @@ export const asyncRouters = [
     },
     children: [
       { path: '/base/cropper', name: 'Cropper', component: Cropper, meta: { title: '图片裁剪' } },
-      { path: '/base/upload', name: 'Upload', component: Cropper, meta: { title: '上传' } }
+      { path: '/base/upload', name: 'Upload', component: Cropper, meta: { title: '上传' } },
+      { path: '/base/clipboard', name: 'Clipboard', component: Clipboard, meta: { title: '复制文本' } }
     ]
   },
   // excel components -----------------------------------------------------------------------------------
@@ -131,7 +142,8 @@ export const asyncRouters = [
       { path: '/echarts/line', name: 'Line', component: ChartLine, meta: { title: '折线图' } },
       { path: '/echarts/pie', name: 'Pie', component: ChartPie, meta: { title: '饼图' } },
       { path: '/echarts/circle', name: 'ChartCircle', component: ChartCircle, meta: { title: '圆环' } },
-      { path: '/echarts/radar', name: 'Radar', component: ChartRadar, meta: { title: '雷达图' } }
+      { path: '/echarts/radar', name: 'Radar', component: ChartRadar, meta: { title: '雷达图' } },
+      { path: '/echarts/map', name: 'ChartMap', component: ChartMap, meta: { title: '地图' } }
     ]
   },
   // baidu map components -----------------------------------------------------------------------------------

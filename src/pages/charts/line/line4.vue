@@ -39,39 +39,52 @@ export default {
             color: '#292f39'
           }
         },
-        xAxis: [{
-          type: 'category',
-          boundaryGap: false,
-          axisLine: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          },
-          data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35']
-        }],
-        yAxis: [{
-          type: 'value',
-          name: '单位（%）',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          },
-          axisLabel: {
-            margin: 10,
-            textStyle: {
-              fontSize: 14
-            }
-          },
-          splitLine: {
-            lineStyle: {
-              color: '#57617B'
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            axisLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
+            },
+            data: [
+              '13:00',
+              '13:05',
+              '13:10',
+              '13:15',
+              '13:20',
+              '13:25',
+              '13:30',
+              '13:35'
+            ]
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '单位（%）',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
+            },
+            axisLabel: {
+              margin: 10,
+              textStyle: {
+                fontSize: 14
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
             }
           }
-        }],
+        ],
         series: [
           {
             name: '移动',
@@ -84,24 +97,37 @@ export default {
               width: 3
             },
             areaStyle: {
-              color: this.linearGradient(0, 0, 1, 0, [{
-                offset: 0,
-                color: 'rgba(16,97,204, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(17,235,210, 0)'
-              }], false),
+              color: this.linearGradient(
+                0,
+                0,
+                1,
+                0,
+                [
+                  {
+                    offset: 0,
+                    color: 'rgba(16,97,204, 0.3)'
+                  },
+                  {
+                    offset: 0.8,
+                    color: 'rgba(17,235,210, 0)'
+                  }
+                ],
+                false
+              ),
               shadowColor: 'rgba(0, 0, 0, 0.1)',
               shadowBlur: 10
             },
             itemStyle: {
-              color: this.linearGradient(0, 0, 1, 0, [{
-                offset: 0,
-                color: 'rgba(16,97,204,1)'
-              }, {
-                offset: 1,
-                color: 'rgba(17,235,210,1)'
-              }]),
+              color: this.linearGradient(0, 0, 1, 0, [
+                {
+                  offset: 0,
+                  color: 'rgba(16,97,204,1)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(17,235,210,1)'
+                }
+              ]),
               emphasis: {
                 color: 'rgb(0,196,132)',
                 borderColor: 'rgba(0,196,132,0.2)',
@@ -122,24 +148,37 @@ export default {
               width: 3
             },
             areaStyle: {
-              color: this.linearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(205,52,42, 0.5)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(235,235,21, 0)'
-              }], false),
+              color: this.linearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: 'rgba(205,52,42, 0.5)'
+                  },
+                  {
+                    offset: 0.8,
+                    color: 'rgba(235,235,21, 0)'
+                  }
+                ],
+                false
+              ),
               shadowColor: 'rgba(0, 0, 0, 0.1)',
               shadowBlur: 10
             },
             itemStyle: {
-              color: this.linearGradient(0, 0, 1, 0, [{
-                offset: 0,
-                color: 'rgba(205,52,42,1)'
-              }, {
-                offset: 1,
-                color: 'rgba(235,235,21,1)'
-              }]),
+              color: this.linearGradient(0, 0, 1, 0, [
+                {
+                  offset: 0,
+                  color: 'rgba(205,52,42,1)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(235,235,21,1)'
+                }
+              ]),
               emphasis: {
                 color: 'rgb(99,250,235)',
                 borderColor: 'rgba(99,250,235,0.2)',

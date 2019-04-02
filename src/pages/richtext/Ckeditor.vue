@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <vue-ckeditor v-model="content" />
     <el-row type="flex" justify="center">
       <el-button type="primary" @click="handleSubmit">确定</el-button>
@@ -13,7 +13,7 @@ export default {
     VueCkeditor
   },
   name: 'CKEditor',
-  data () {
+  data() {
     return {
       content: '生命在于折腾'
     }

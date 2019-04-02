@@ -39,16 +39,19 @@ export default {
       map.addControl(new BMap.MapTypeControl()) // 地图右上方，地图类型
       that.geoLoading = true
       const geolocation = new BMap.Geolocation()
-      geolocation.getCurrentPosition(function (r) {
-        that.geoLoading = false
-        if (this.getStatus() === window.BMAP_STATUS_SUCCESS) {
-          // 重置中心点
-          map.panTo(r.point)
-          map.setZoom(12)
+      geolocation.getCurrentPosition(
+        function(r) {
+          that.geoLoading = false
+          if (this.getStatus() === window.BMAP_STATUS_SUCCESS) {
+            // 重置中心点
+            map.panTo(r.point)
+            map.setZoom(12)
+          }
+        },
+        {
+          enableHighAccuracy: true
         }
-      }, {
-        enableHighAccuracy: true
-      })
+      )
       map.addEventListener('click', e => {
         const text = `当前坐标：${e.point.lng} , ${e.point.lat}`
         this.$message(text)
@@ -59,15 +62,16 @@ export default {
 </script>
 
 <style scoped>
-  .wrapper, #container {
-    height: 100%;
-  }
+.wrapper,
+#container {
+  height: 100%;
+}
 
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 </style>

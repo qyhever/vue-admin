@@ -10,9 +10,8 @@ export async function logoutReq() {
   return axios.post(url)
 }
 
-export async function getUserReq(_id) {
-  const url = `/user/${_id}`
-  return axios.get(url)
+export async function getUserReq() {
+  return axios.get('/queryCurrentUser')
 }
 
 export async function refreshToken() {

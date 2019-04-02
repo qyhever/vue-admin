@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <div class="form">
       <el-input id="suggestId" v-model="suggest" />
       <el-button class="btn" type="primary" @click="handleSubmit">确定</el-button>

@@ -17,11 +17,15 @@ export function formatTime(date) {
   return moment(date).format('YYYY-MM-DD hh:mm:ss')
 }
 
-export function createExcelInput() {
+export function createExcelInput(type) {
   return new Promise(resolve => {
     const input = document.createElement('input')
     input.setAttribute('type', 'file')
-    input.setAttribute('accept', 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    if (type === 'img') {
+      input.setAttribute('accept', 'image/*')
+    } else {
+      input.setAttribute('accept', 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    }
     input.onchange = e => {
       const file = e.target.files[0]
       resolve(file)

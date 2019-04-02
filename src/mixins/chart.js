@@ -4,11 +4,11 @@ echarts.registerTheme(macaronsConfig.themeName, macaronsConfig.theme)
 
 export default {
   data() {
+    this.chart = null // 图表
+    this.option = {} // 图表参数
     return {
       data: {}, // 数据
       list: [], // 数据
-      chart: null, // 图表
-      option: {}, // 图表参数
       isFirstRender: true // 是否为首次渲染
     }
   },

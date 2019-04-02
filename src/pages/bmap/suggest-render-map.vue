@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <div class="form">
       <el-input id="suggestId" v-model="suggest" />
       <el-button class="btn" type="primary" @click="handleSubmit">确定</el-button>
@@ -35,7 +35,12 @@ export default {
       let result = ''
       ac.addEventListener('onconfirm', e => {
         const value = e.item.value
-        result = value.province + value.city + value.district + value.street + value.business
+        result =
+          value.province +
+          value.city +
+          value.district +
+          value.street +
+          value.business
         that.suggest = result
         // 清除地图上所有覆盖物
         map.clearOverlays()

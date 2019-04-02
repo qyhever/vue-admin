@@ -52,7 +52,7 @@ export default {
     position: relative;
     overflow: unset;
     transition: all 0.4s;
-    padding: 0
+    padding: 0;
   }
   .footer {
     flex: 0 0 60px;

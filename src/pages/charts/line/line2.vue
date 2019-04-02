@@ -73,7 +73,7 @@ export default {
             name: '直接访问',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
+            areaStyle: { normal: {} },
             data: [320, 332, 301, 334, 390, 330, 320]
           },
           {
@@ -86,7 +86,7 @@ export default {
                 position: 'top'
               }
             },
-            areaStyle: {normal: {}},
+            areaStyle: { normal: {} },
             data: [820, 932, 901, 934, 1290, 1330, 1320]
           }
         ]

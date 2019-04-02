@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="con-main">
     <div class="btn-group">
       <el-button class="mr15" type="primary" @click="handleTemplate">模板</el-button>
       <el-button type="primary" @click="handleImport">导入</el-button>

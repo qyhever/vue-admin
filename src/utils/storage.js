@@ -1,5 +1,4 @@
 const TOKEN = 'admin-token'
-const USER_ID = 'admin-user-id'
 const IS_COLLAPSE = 'is-collapse'
 const FROM_PATH = 'from-path'
 
@@ -9,14 +8,6 @@ export function getToken() {
 
 export function setToken(value) {
   return window.localStorage.setItem(TOKEN, value)
-}
-
-export function getUserId() {
-  return window.localStorage.getItem(USER_ID)
-}
-
-export function setUserId(value) {
-  return window.localStorage.setItem(USER_ID, value)
 }
 
 export function getCollapse() {
@@ -38,5 +29,4 @@ export function setFromPath(value) {
 
 export function clearStorage() {
   window.localStorage.removeItem(TOKEN)
-  window.localStorage.removeItem(USER_ID)
 }
