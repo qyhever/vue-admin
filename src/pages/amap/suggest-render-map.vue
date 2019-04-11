@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import AMap from 'AMap'
+const AMap = window.AMap
 export default {
   name: 'ASuggestRenderMap',
   data() {

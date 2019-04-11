@@ -128,70 +128,94 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.dashboard
-  padding 20px
-@media screen and (max-width: 992px)
-  .dashboard >>> .el-col-24
-    margin-bottom 10px
-.card
-  overflow hidden
-  padding 24px
-  background-color #fff
-  transition all 0.4s
-  &:hover
-    box-shadow 0 2px 20px rgba(0, 0, 0, 0.15)
-  .fa
-    float left
-    margin-top 8px
-    font-size 50px
-  .fa-user-o
-    color #3FC8C5
-  .fa-commenting
-    color #38A3F5
-  .fa-cny
-    color #F3516B
-  .fa-shopping-cart
-    color #32BEA3
-  .desc
-    float right
-    font-size 16px
-    p
-      margin-bottom 1em
-    .bold
-      font-size 24px
-      font-weight 600
-.main-row
-  margin-top 20px
-.remind-row
-  height 440px
-  display flex
-  flex-direction column
-  .remind1, .remind2
-    width 100%
-    flex 1
-    font-size 16px
-    color #fff
-    transition all 0.4s
-    &:hover
-      box-shadow 0 2px 20px rgba(0, 0, 0, 0.15)
-  .remind1
-    background-color rgb(247, 151, 214)
-    margin-bottom 20px
-    font-size 20px
-    font-family '楷体'
-  .remind2
-    background-color rgb(143, 201, 251)
-    >>> .el-card__body
-      box-sizing border-box
-      display flex
-      width 100%
-      height 100%
-      .left
-        flex 1
-      .right
-        flex 1
-@media screen and (max-width: 1200px)
-  .card-row >>> .el-col:first-of-type, .card-row >>> .el-col:nth-of-type(2)
-    margin-bottom 10px
+<style lang="scss" scoped>
+.dashboard {
+  padding: 20px;
+}
+@media screen and (max-width: 992px) {
+  .dashboard /deep/ .el-col-24 {
+    margin-bottom: 10px;
+  }
+}
+.card {
+  overflow: hidden;
+  padding: 24px;
+  background-color: #fff;
+  transition: all 0.4s;
+  &:hover {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  }
+  .fa {
+    float: left;
+    margin-top: 8px;
+    font-size: 50px;
+  }
+  .fa-user-o {
+    color: #3FC8C5;
+  }
+  .fa-commenting {
+    color: #38A3F5;
+  }
+  .fa-cny {
+    color: #F3516B;
+  }
+  .fa-shopping-cart {
+    color: #32BEA3;
+  }
+  .desc {
+    float: right;
+    font-size: 16px;
+    p {
+      margin-bottom: 1em;
+    }
+    .bold {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+}
+.main-row {
+  margin-top: 20px;
+}
+.remind-row {
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  .remind1, .remind2 {
+    width: 100%;
+    flex: 1;
+    font-size: 16px;
+    color: #fff;
+    transition: all 0.4s;
+    &:hover {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+  .remind1 {
+    background-color: rgb(247, 151, 214);
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: '楷体';
+  }
+  .remind2 {
+    background-color: rgb(143, 201, 251);
+    /deep/ .el-card__body {
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      .left {
+        flex: 1;
+      }
+      .right {
+        flex: 1;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .card-row /deep/ .el-col:first-of-type, .card-row /deep/ .el-col:nth-of-type(2) {
+    margin-bottom: 10px;
+  }
+}
 </style>

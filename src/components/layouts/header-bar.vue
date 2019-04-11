@@ -4,16 +4,20 @@
       <menu-unfold class="icon-menu" v-if="isCollapse"></menu-unfold>
       <menu-fold class="icon-menu" v-else></menu-fold>
     </div>
-    <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" @click="handleFullscreen" />
-    <el-dropdown class="user" @command="handleDropdown" :show-timeout="50">
-      <div>
-        <span class="userName">{{userInfo.userName}}</span>
-        <img class="avatar" :src="userInfo.avatar" :alt="userInfo.userName">
+    <div class="header-right">
+      <div class="full-wrapper" @click="handleFullscreen">
+        <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" class="full" />
       </div>
-      <el-dropdown-menu class="dropdown-menu" slot="dropdown">
-        <el-dropdown-item command="b">退出登录</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+      <el-dropdown class="user" @command="handleDropdown" :show-timeout="50">
+        <div>
+          <span class="userName">{{userInfo.userName}}</span>
+          <img class="avatar" :src="userInfo.avatar" :alt="userInfo.userName">
+        </div>
+        <el-dropdown-menu class="dropdown-menu" slot="dropdown">
+          <el-dropdown-item command="b">退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
   </el-header>
 </template>
 
@@ -23,7 +27,7 @@ import MenuUnfold from '@/components/icon/menu-unfold'
 import screenfull from 'screenfull'
 import { mapGetters } from 'vuex'
 import bus from '@/bus'
-import { stringify } from 'qs'
+// import { stringify } from 'qs'
 
 export default {
   name: 'HomeHeader',
@@ -97,10 +101,27 @@ export default {
       @include bg-hover-canary();
     }
   }
-  .user {
+  .header-right {
     float: right;
+    height: 60px;
+  }
+  .full-wrapper {
+    float: left;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .full {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .user {
+    float: left;
     width: 140px;
-    padding: 0 20px;
+    padding: 0 10px;
     cursor: pointer;
     @include bg-hover-canary();
     .userName {

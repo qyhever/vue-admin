@@ -1,6 +1,6 @@
 import * as storage from '@/utils/storage'
 import * as api from '@/api/user'
-import { encrypt } from '@/utils/md5'
+import md5 from 'md5'
 
 const state = {
   token: storage.getToken(),
@@ -32,7 +32,7 @@ const actions = {
       const { userName, password } = params
       const options = {
         userName,
-        password: encrypt(password)
+        password: md5(password)
       }
       api.loginReq(options).then(res => {
         if (res.success) {

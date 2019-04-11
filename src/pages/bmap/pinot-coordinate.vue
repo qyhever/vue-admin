@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import BMap from 'BMap'
-
+const BMap = window.BMap
 export default {
   name: 'Pinot2Coordinate',
   data() {

@@ -110,10 +110,12 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.export-btn
-  margin-bottom 22px
-.pagination
-  padding-top 22px
-  text-align center
+<style lang="scss" scoped>
+.export-btn {
+  margin-bottom: 22px;
+}
+.pagination {
+  padding-top: 22px;
+  text-align: center;
+}
 </style>

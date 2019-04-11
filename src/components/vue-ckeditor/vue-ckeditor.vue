@@ -6,7 +6,7 @@
 <script>
 import axios from '@/utils/axios'
 import request from 'axios'
-import CKEDITOR from 'CKEDITOR'
+const CKEDITOR = window.CKEDITOR
 export default {
   name: 'CKEditor',
   props: {
