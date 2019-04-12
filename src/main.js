@@ -16,13 +16,6 @@ import '@/assets/scss/transition.scss'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
-import VeLine from 'v-charts/lib/line.common'
-import VePie from 'v-charts/lib/pie.common'
-import VeGauge from 'v-charts/lib/gauge.common'
-Vue.component(VeLine.name, VeLine)
-Vue.component(VePie.name, VePie)
-Vue.component(VeGauge.name, VeGauge)
-
 import * as filters from './filters' // global filters
 // register global filters.
 Object.keys(filters).forEach(key => {

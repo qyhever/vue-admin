@@ -31,7 +31,6 @@
     "nprogress": "^0.2.0",
     "path-to-regexp": "^2.4.0",
     "screenfull": "^4.0.1",
-    "v-charts": "^1.19.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",

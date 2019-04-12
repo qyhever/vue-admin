@@ -11,7 +11,6 @@ const symbol1 = 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVC
 const list = data.map(item => {
   return item.slice(0, 2)
 })
-console.log(list)
 export default {
   mixins: [chart],
   methods: {

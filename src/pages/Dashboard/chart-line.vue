@@ -1,29 +1,56 @@
 <template>
-  <ve-line :data="chartData"></ve-line>
+  <div ref="chart" class="chart" style="height: 400px"></div>
 </template>
 
 <script>
+import chart from '@/mixins/chart'
 export default {
-  data() {
-    const rows = []
-    for (let i = 0; i < 7; i++) {
-      const date = new Date()
-      const y = date.getFullYear()
-      const m = date.getMonth() + 1
-      const d = Math.abs(date.getDate() - (7 - i))
-      const from = Math.floor(Math.random() * 100000)
-      const order = Math.floor(Math.random() * 100000)
-      rows.push({
-        日期: `${y}-${m}-${d}`,
-        访问用户: from,
-        下单用户: order
-      })
-    }
-    return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户'],
-        rows
+  mixins: [chart],
+  methods: {
+    setOption() {
+      this.option = {
+        title: {
+          text: '上周趋势分析'
+        },
+        grid: {
+          left: '5%',
+          right: '4%'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['直接访问', '下单量']
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '直接访问',
+            type: 'line',
+            stack: 'line',
+            smooth: true,
+            data: this.genRandomData(8, 800)
+          },
+          {
+            name: '下单量',
+            type: 'line',
+            stack: 'line',
+            smooth: true,
+            data: this.genRandomData(8, 1000)
+          }
+        ]
       }
+    },
+    refresh() {
+      const option = this.option
+      this.render(option)
     }
   }
 }

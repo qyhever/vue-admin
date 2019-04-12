@@ -34,13 +34,13 @@ import SuggestRenderMap from '@/pages/bmap/suggest-render-map'
 import APinot2Coordinate from '@/pages/amap/pinot-coordinate'
 import ASuggestRenderMap from '@/pages/amap/suggest-render-map'
 import Admin from '@/pages/authority/admin'
-import Error404 from '@/pages/error/error404'
+import Exception404 from '@/pages/exception/exception404'
 
 // 静态公共路由
 export const constantRouters = [
   { path: '/', redirect: '/dashboard', hidden: true },
   { path: '/login', name: 'Login', component: Login, meta: { title: '登录' }, hidden: true },
-  { path: '/404', component: Error404, hidden: true }
+  { path: '/404', component: Exception404, hidden: true }
 ]
 
 // 注册路由
@@ -188,5 +188,5 @@ export const asyncRouters = [
       { path: '/authority/admin', name: 'Admin', component: Admin, meta: { title: 'admin测试页面' } }
     ]
   },
-  { path: '*', component: Error404, hidden: true }
+  { path: '*', component: Exception404, hidden: true }
 ]

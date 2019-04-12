@@ -13,10 +13,21 @@ export default {
     }
   },
   mounted() {
+    this.$store.subscribe((mutation) => {
+      if (mutation.type === 'TOGGLE_MENU') {
+        setTimeout(() => {
+          this.resize()
+        }, 500)
+      }
+    })
     this.$nextTick(() => {
       this.init()
       this.refresh()
     })
+    window.addEventListener('resize', this.resize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.resize)
   },
   methods: {
     init() {

@@ -1,6 +1,6 @@
-const TOKEN = 'admin-token'
-const IS_COLLAPSE = 'is-collapse'
-const FROM_PATH = 'from-path'
+const TOKEN = 'c-admin-token'
+const IS_COLLAPSE = 'c-admin-collapse'
+const FROM_PATH = 'c-admin-from-path'
 
 export function getToken() {
   return window.localStorage.getItem(TOKEN)
