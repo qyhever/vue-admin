@@ -176,7 +176,7 @@ export const asyncRouters = [
   },
   // admin test components -----------------------------------------------------------------------------------
   {
-    path: '/authority',
+    path: '/authority/admin',
     component: BasicLayout,
     icon: 'fa fa-map',
     name: 'Authority',

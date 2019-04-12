@@ -13,7 +13,7 @@
     @select="handleSelect">
     <template v-for="(item) in routers">
 
-      <template v-if="item.children">
+      <template v-if="item.children && item.children.length > 1">
         <el-submenu :index="item.path" :key="item.path">
           <template slot="title">
             <i :class="item.icon"></i>
