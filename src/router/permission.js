@@ -15,12 +15,13 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (store.getters.roles.length === 0) {
-        store.dispatch('getUserInfo').then(() => {
-          store.dispatch('generateRoutes', store.getters.roles).then(() => {
+      if (!store.getters.userInfo.roles) {
+        store.dispatch('getUserInfo').then(roles => {
+          store.dispatch('generateRoutes', roles).then(() => {
             router.addRoutes(store.getters.addRoutes)
             next({ ...to, replace: true })
           })
+          next()
         })
       } else {
         refreshToken().then(res => {

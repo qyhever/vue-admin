@@ -18,7 +18,7 @@
 import QueryForm from './form'
 import QueryTable from './table'
 export default {
-  name: 'TableQuery',
+  name: 'table_query',
   components: { QueryForm, QueryTable },
   data() {
     return {

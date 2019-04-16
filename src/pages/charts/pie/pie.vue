@@ -24,7 +24,7 @@ import Pie3 from './pie3'
 import Pie4 from './pie4'
 import bus from '@/bus'
 export default {
-  name: 'Pie',
+  name: 'charts_pie',
   components: {
     Pie1,
     Pie2,

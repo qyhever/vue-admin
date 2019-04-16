@@ -9,7 +9,7 @@
 import clip from '@/utils/clipboard'
 
 export default {
-  name: 'Clipboard',
+  name: 'base_clipboard',
   data() {
     return {
       value: '点击右侧按钮复制'

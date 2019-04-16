@@ -56,7 +56,7 @@ import { exportExcel } from 'xlsx-oc'
 import defaultAvatar from '@/assets/images/default-avatar.jpg'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'export',
+  name: 'excel_export',
   data() {
     return {
       list: [],

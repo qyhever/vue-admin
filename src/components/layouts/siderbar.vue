@@ -1,44 +1,57 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-    router
-    :default-active="$route.path"
-    :default-openeds="defaultOpeneds"
-    class="menu"
-    background-color="#001529"
-    active-text-color="#fff"
-    text-color="#ffffffa6"
-    :collapse="isCollapse"
-    unique-opened
-    @select="handleSelect">
-    <template v-for="(item) in routers">
+      router
+      :default-active="$route.path"
+      :default-openeds="defaultOpeneds"
+      class="menu"
+      background-color="#001529"
+      active-text-color="#fff"
+      text-color="#ffffffa6"
+      :collapse="isCollapse"
+      unique-opened
+      @select="handleSelect">
+      <template v-for="(item) in routers">
 
-      <template v-if="item.children && item.children.length > 1">
-        <el-submenu :index="item.path" :key="item.path">
-          <template slot="title">
-            <i :class="item.icon"></i>
-            <span>{{item.meta.title}}</span>
-          </template>
-          <el-menu-item v-for="(subItem) in item.children" :key="subItem.path" :index="subItem.path">
-            {{subItem.meta.title}}
+        <template v-if="item.children && item.children.length > 1">
+          <el-submenu :index="item.path" :key="item.path">
+            <template slot="title">
+              <svg-icon :icon-class="item.meta.icon" class="icon"></svg-icon>
+              <span>{{item.meta.title}}</span>
+            </template>
+            <el-menu-item v-for="(subItem) in item.children" :key="subItem.path" :index="subItem.path">
+              {{subItem.meta.title}}
+            </el-menu-item>
+          </el-submenu>
+        </template>
+
+        <template v-else>
+          <el-menu-item :index="item.children[0].path" :key="item.children[0].path">
+            <svg-icon :icon-class="item.children[0].meta.icon" class="icon"></svg-icon>
+            <span>{{item.children[0].meta.title}}</span>
           </el-menu-item>
-        </el-submenu>
-      </template>
+        </template>
 
-      <template v-else>
-        <el-menu-item :index="item.path" :key="item.path">
-          <i :class="item.icon"></i>
-          <span>{{item.meta.title}}</span>
-        </el-menu-item>
       </template>
-
-    </template>
-  </el-menu>
+    </el-menu>
   </el-scrollbar>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+// import { routers } from '@/router'
+function getMenu(list) {
+  return list.filter(item => {
+    if (!item.meta || !item.meta.hiddenInMenu) {
+      if (item.children) {
+        item.children = getMenu(item.children)
+      }
+      return true
+    } else {
+      return false
+    }
+  })
+}
 export default {
   name: 'Sliderbar',
   data() {
@@ -49,17 +62,7 @@ export default {
   computed: {
     ...mapGetters(['isCollapse']),
     routers() {
-      const filterRoutes = this.$store.getters.routers.filter(v => !v.hidden)
-      filterRoutes.forEach(v => {
-        if (v.path === '/') {
-          const [route] = v.children
-          v.meta.title = route.meta.title
-          v.icon = route.icon
-          v.path = route.path
-          delete v.children
-        }
-      })
-      return filterRoutes
+      return getMenu(this.$store.getters.routers)
     }
   },
   methods: {
@@ -103,5 +106,12 @@ export default {
 }
 .menu /deep/ .el-menu-item:hover {
   color: #fff !important;
+}
+.menu .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
 }
 </style>

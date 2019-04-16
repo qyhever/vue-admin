@@ -9,10 +9,10 @@
 <script>
 import VueCkeditor from '@/components/vue-ckeditor'
 export default {
+  name: 'richtext_ckeditor',
   components: {
     VueCkeditor
   },
-  name: 'CKEditor',
   data() {
     return {
       content: '生命在于折腾'

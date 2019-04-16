@@ -24,7 +24,7 @@ import Line3 from './line3'
 import Line4 from './line4'
 import bus from '@/bus'
 export default {
-  name: 'ChartBar',
+  name: 'charts_line',
   components: {
     Line1,
     Line2,

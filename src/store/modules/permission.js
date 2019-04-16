@@ -20,7 +20,7 @@ function hasPermission(roles, route) {
  * @param roles
  */
 function filterAsyncRouter(asyncRouters, roles) {
-  const accessedRouters = asyncRouters.filter(route => {
+  const tempRoutesrs = asyncRouters.filter(route => {
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
         route.children = filterAsyncRouter(route.children, roles)
@@ -29,13 +29,14 @@ function filterAsyncRouter(asyncRouters, roles) {
     }
     return false
   })
-  return accessedRouters
+  const accessRoutesrs = tempRoutesrs.filter(route => !route.children || (route.children && route.children.length))
+  return accessRoutesrs
 }
 
 const permission = {
   // namespace: true,
   state: {
-    routers: constantRouters,
+    routers: [],
     addRoutes: []
   },
   mutations: {

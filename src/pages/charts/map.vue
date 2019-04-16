@@ -12,6 +12,7 @@ const list = data.map(item => {
   return item.slice(0, 2)
 })
 export default {
+  name: 'charts_map',
   mixins: [chart],
   methods: {
     setOption() {

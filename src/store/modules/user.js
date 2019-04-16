@@ -4,13 +4,12 @@ import md5 from 'md5'
 
 const state = {
   token: storage.getToken(),
-  userInfo: {},
-  roles: []
+  userInfo: {}
 }
 
 const getters = {
   token: state => state.token,
-  user: state => state.user
+  userInfo: state => state.userInfo
 }
 
 const mutations = {
@@ -20,9 +19,6 @@ const mutations = {
   },
   SET_USER_INFO(state, info) {
     state.userInfo = info
-  },
-  SET_ROLES(state, roles) {
-    state.roles = roles
   }
 }
 
@@ -48,7 +44,6 @@ const actions = {
   logout({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
-      commit('SET_ROLES', [])
       storage.clearStorage()
       resolve()
     })
@@ -58,17 +53,8 @@ const actions = {
       api.getUserReq().then(res => {
         if (res.success) {
           const { data: userInfo } = res
-          const { authority } = userInfo
-          let roles = []
-          if (Array.isArray(authority)) {
-            roles = authority
-          }
-          if (typeof authority === 'string') {
-            roles = [authority]
-          }
-          commit('SET_ROLES', roles)
           commit('SET_USER_INFO', userInfo)
-          resolve()
+          resolve(userInfo.roles)
         }
       }).catch(e => {
         reject(e)

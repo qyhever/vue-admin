@@ -24,7 +24,7 @@ import Circle3 from './circle3'
 import Circle4 from './circle4'
 import bus from '@/bus'
 export default {
-  name: 'ChartCircle',
+  name: 'charts_circle',
   components: {
     Circle1,
     Circle2,

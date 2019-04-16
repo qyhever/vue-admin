@@ -79,6 +79,7 @@
 import { getSingersReq } from '@/api/table'
 import defaultAvatar from '@/assets/images/default-avatar.jpg'
 export default {
+  name: 'table_select',
   data() {
     this.defaultAvatar = defaultAvatar
     return {

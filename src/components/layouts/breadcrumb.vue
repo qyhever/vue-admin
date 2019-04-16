@@ -1,9 +1,12 @@
 <template>
   <el-breadcrumb separator="/" class="bread">
-    <el-breadcrumb-item v-for="(item, index) in list" v-if="item.meta.title" :key="item.path">
-      <span v-if="!item.redirect || index === list.length - 1">{{item.meta.title}}</span>
-      <a v-else @click.prevent="handleClick(item)">{{item.meta.title}}</a>
-    </el-breadcrumb-item>
+    <template v-for="(item, index) in list">
+      <el-breadcrumb-item v-if="item.meta && item.meta.title" :key="item.path">
+        <router-link v-if="item.path === '/dashboard'" to="/dashboard">{{item.meta.title}}</router-link>
+        <span v-else-if="!item.redirect || index === list.length - 1">{{item.meta.title}}</span>
+        <a v-else @click.prevent="handleClick(item)">{{item.meta.title}}</a>
+      </el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 
@@ -25,14 +28,10 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(
-        v => !v.name || v.name !== 'Dashboard'
-      )
+      let matched = this.$route.matched.filter(v => v.name)
       const first = matched[0]
       if (first && first.name.trim().toLocaleLowerCase() !== 'dashboard') {
-        matched = [{ path: '/dashboard', meta: { title: '首页' } }].concat(
-          matched
-        )
+        matched = [{ path: '/dashboard', meta: { title: '首页' } }].concat(matched)
       }
       this.list = matched
     },

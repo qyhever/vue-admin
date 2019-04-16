@@ -24,7 +24,7 @@ import Bar3 from './bar3'
 import Bar4 from './bar4'
 import bus from '@/bus'
 export default {
-  name: 'ChartBar',
+  name: 'charts_bar',
   components: {
     Bar1,
     Bar2,

@@ -24,7 +24,7 @@ import Radar3 from './radar3'
 import Radar4 from './radar4'
 import bus from '@/bus'
 export default {
-  name: 'Radar',
+  name: 'charts_radar',
   components: {
     Radar1,
     Radar2,

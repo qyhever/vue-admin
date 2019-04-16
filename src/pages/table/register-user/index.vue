@@ -9,7 +9,7 @@
 import RegisterUserForm from './form'
 import RegisterUserTable from './table'
 export default {
-  name: 'RegisterUser',
+  name: 'table_register_user',
   components: {
     RegisterUserForm,
     RegisterUserTable

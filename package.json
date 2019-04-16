@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "cross-env BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --progress --color --config build/webpack.dev.conf.js",
     "start": "npm run dev",
+    "dll": "webpack --config ./build/webpack.dll.conf.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --fix --ext .js,.vue src"
@@ -50,6 +51,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-stage-2": "6.24.1",
     "chalk": "2.4.1",
+    "clean-webpack-plugin": "^2.0.1",
     "compression-webpack-plugin": "2.0.0",
     "connect": "3.6.6",
     "copy-webpack-plugin": "4.5.2",

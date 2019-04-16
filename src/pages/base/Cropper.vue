@@ -8,7 +8,7 @@
 <script>
 import VueCropper from '@/components/cropper'
 export default {
-  name: 'Cropper',
+  name: 'base_cropper',
   components: {
     VueCropper
   },

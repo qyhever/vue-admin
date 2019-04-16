@@ -9,7 +9,7 @@
 <script>
 import VueTinymce from '@/components/vue-tinymce'
 export default {
-  name: 'Tinymce',
+  name: 'richtext_tinymce',
   components: {
     VueTinymce
   },

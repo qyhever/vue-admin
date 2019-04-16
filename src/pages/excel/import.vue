@@ -38,7 +38,7 @@ import { exportExcel } from 'xlsx-oc'
 import { createExcelInput } from '@/utils/utils'
 import { parse } from '@/utils/excel'
 export default {
-  name: 'import',
+  name: 'excel_import',
   data() {
     return {
       list: []

@@ -24,7 +24,7 @@ import Column3 from './column3'
 import Column4 from './column4'
 import bus from '@/bus'
 export default {
-  name: 'Colmun',
+  name: 'charts_colmun',
   components: {
     Column1,
     Column2,

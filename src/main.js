@@ -16,7 +16,7 @@ import '@/assets/scss/transition.scss'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
-import * as filters from './filters' // global filters
+import * as filters from './filters'
 // register global filters.
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
@@ -37,7 +37,7 @@ Object.keys(directives).forEach(key => {
   Vue.directive(key, directives[key])
 })
 import './icons'
-
+Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   router,
