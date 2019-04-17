@@ -35,7 +35,7 @@
 
 <script>
 import { exportExcel } from 'xlsx-oc'
-import { createExcelInput } from '@/utils/utils'
+import { createInput } from '@/utils/utils'
 import { parse } from '@/utils/excel'
 export default {
   name: 'excel_import',
@@ -63,7 +63,7 @@ export default {
       exportExcel(headers, list, '导入模板.xlsx')
     },
     async handleImport() {
-      const file = await createExcelInput()
+      const file = await createInput('excel')
       const { results } = await parse(file)
       if (!results.length) {
         return this.$message.warning('没有数据，请重新导入')

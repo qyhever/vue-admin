@@ -17,6 +17,7 @@ import TableExport from '@/pages/excel/export'
 // richtext
 import Tinymce from '@/pages/richtext/tinymce'
 import Ckeditor from '@/pages/richtext/ckeditor'
+import Quill from '@/pages/richtext/quill'
 // charts
 import ChartColmun from '@/pages/charts/colmun'
 import ChartBar from '@/pages/charts/bar'
@@ -35,7 +36,7 @@ import AmapSelectPoint from '@/pages/amap/pinot-coordinate'
 import AmapSuggestSearch from '@/pages/amap/suggest-render-map'
 import Exception404 from '@/pages/exception/exception404'
 // test
-import Admin from '@/pages/authority/admin'
+import Admin from '@/pages/admin'
 import Test from '@/pages/test'
 import Guest from '@/pages/guest'
 
@@ -93,7 +94,8 @@ export const asyncRouters = [
     },
     children: [
       { path: '/richtext/tinymce', name: 'richtext_tinymce', component: Tinymce, meta: { title: 'tinymce' } },
-      { path: '/richtext/ckeditor', name: 'richtext_ckeditor', component: Ckeditor, meta: { title: 'ckeditor' } }
+      { path: '/richtext/ckeditor', name: 'richtext_ckeditor', component: Ckeditor, meta: { title: 'ckeditor' } },
+      { path: '/richtext/quill', name: 'richtext_quill', component: Quill, meta: { title: 'quill' } }
     ]
   },
   // base components -----------------------------------------------------------------------------------
@@ -176,20 +178,23 @@ export const asyncRouters = [
   {
     path: '/admin',
     name: 'admin_parent',
+    component: Layout,
     children: [
-      { path: '/admin', name: 'admin', component: Admin, meta: { icon: 'fa fa-map', title: 'admin测试页面', roles: ['admin'] } }
+      { path: '/admin', name: 'admin', component: Admin, meta: { icon: 'admin', title: 'admin测试页面', roles: ['admin'] } }
     ]
   },
   {
     path: '/test',
     name: 'test_parent',
+    component: Layout,
     children: [
-      { path: '/test', name: 'test', component: Test, meta: { icon: 'fa fa-map', title: 'test测试页面', roles: ['test'] } }
+      { path: '/test', name: 'test', component: Test, meta: { icon: 'test', title: 'test测试页面', roles: ['test'] } }
     ]
   },
   {
     path: '/guest',
     name: 'guest_parent',
+    component: Layout,
     children: [
       { path: '/guest', name: 'guest', component: Guest, meta: { icon: 'guest', title: 'guest测试页面', roles: ['guest'] } }
     ]

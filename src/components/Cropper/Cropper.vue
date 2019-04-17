@@ -29,7 +29,7 @@
 <script>
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.min.css'
-import { createExcelInput } from '@/utils/utils'
+import { createInput } from '@/utils/utils'
 export default {
   props: {
     src: {
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     upload () {
-      createExcelInput('img').then(file => {
+      createInput('img').then(file => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = event => {

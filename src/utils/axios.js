@@ -6,8 +6,8 @@ import { getToken } from '@/utils/storage'
 
 // axios.defaults.headers.post['Content-Type'] = 'application/json charset=UTF-8'
 const instance = axios.create({
-  // baseURL: process.env.BASE_API
-  baseURL: 'https://api.qyhever.com'
+  baseURL: process.env.BASE_API
+  // baseURL: 'https://api.qyhever.com'
   // baseURL: 'http://localhost:3000'
 })
 
