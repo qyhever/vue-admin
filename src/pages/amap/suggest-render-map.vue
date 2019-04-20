@@ -1,7 +1,7 @@
 <template>
   <div class="con-main">
     <div class="form">
-      <el-input id="suggestId" v-model="suggest" />
+      <el-input id="suggestId" v-model="suggest" placeholder="输入地址" />
       <el-button class="btn" type="primary" @click="handleSubmit">确定</el-button>
     </div>
     <div id="container"></div>

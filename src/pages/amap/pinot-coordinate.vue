@@ -17,7 +17,16 @@ export default {
         zoom: 12
       })
       map.on('click', e => {
-        const text = `当前坐标：${e.lnglat.getLng()} , ${e.lnglat.getLat()}`
+        console.log(e)
+        const lng = e.lnglat.getLng()
+        const lat = e.lnglat.getLat()
+        const marker = new AMap.Marker({
+          // icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+          position: [lng, lat]
+        })
+        map.clearMap()
+        map.add(marker)
+        const text = `当前坐标：${lng} , ${lat}`
         this.$message(text)
       })
     }

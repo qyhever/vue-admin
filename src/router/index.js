@@ -29,11 +29,14 @@ import ChartMap from '@/pages/charts/map'
 // base components
 import Cropper from '@/pages/base/cropper'
 import Clipboard from '@/pages/base/clipboard'
+import Qrcode from '@/pages/base/qrcode'
 // map
 import BmapSelectPoint from '@/pages/bmap/pinot-coordinate'
 import BmapSuggestSearch from '@/pages/bmap/suggest-render-map'
+import BmapResolveAddress from '@/pages/bmap/resolve-address'
 import AmapSelectPoint from '@/pages/amap/pinot-coordinate'
 import AmapSuggestSearch from '@/pages/amap/suggest-render-map'
+import AmapResolveAddress from '@/pages/amap/resolve-address'
 import Exception404 from '@/pages/exception/exception404'
 // test
 import Admin from '@/pages/admin'
@@ -110,7 +113,8 @@ export const asyncRouters = [
     children: [
       { path: '/base/cropper', name: 'base_cropper', component: Cropper, meta: { title: '图片裁剪' } },
       // { path: '/base/upload', name: 'base_upload', component: Cropper, meta: { title: '上传' } },
-      { path: '/base/clipboard', name: 'base_clipboard', component: Clipboard, meta: { title: '复制文本' } }
+      { path: '/base/clipboard', name: 'base_clipboard', component: Clipboard, meta: { title: '复制文本' } },
+      { path: '/base/qrcode', name: 'base_qrcode', component: Qrcode, meta: { title: '二维码' } }
     ]
   },
   // excel components -----------------------------------------------------------------------------------
@@ -157,7 +161,8 @@ export const asyncRouters = [
     },
     children: [
       { path: '/bmap/select-point', name: 'bmap_select_point', component: BmapSelectPoint, meta: { title: '鼠标拾取坐标' } },
-      { path: '/bmap/suggest-search', name: 'bmap_suggest_search', component: BmapSuggestSearch, meta: { title: '关键字输入' } }
+      { path: '/bmap/suggest-search', name: 'bmap_suggest_search', component: BmapSuggestSearch, meta: { title: '关键字输入' } },
+      { path: '/bmap/resolve-address', name: 'bmap_resolve_address', component: BmapResolveAddress, meta: { title: '地址解析' } }
     ]
   },
   // gaode map components -----------------------------------------------------------------------------------
@@ -171,7 +176,8 @@ export const asyncRouters = [
     },
     children: [
       { path: '/amap/select-point', name: 'amap_select_point', component: AmapSelectPoint, meta: { title: '鼠标拾取坐标' } },
-      { path: '/amap/suggest-search', name: 'amap_suggest_search', component: AmapSuggestSearch, meta: { title: '关键字输入' } }
+      { path: '/amap/suggest-search', name: 'amap_suggest_search', component: AmapSuggestSearch, meta: { title: '关键字输入' } },
+      { path: '/amap/resolve-address', name: 'amap_resolve_address', component: AmapResolveAddress, meta: { title: '地址解析' } }
     ]
   },
   // admin test components -----------------------------------------------------------------------------------
@@ -199,5 +205,15 @@ export const asyncRouters = [
       { path: '/guest', name: 'guest', component: Guest, meta: { icon: 'guest', title: 'guest测试页面', roles: ['guest'] } }
     ]
   },
-  { path: '*', component: Exception404, meta: { hiddenInMenu: true } }
+  {
+    path: '*',
+    meta: { hiddenInMenu: true },
+    component: Layout,
+    children: [
+      {
+        path: '*',
+        component: Exception404
+      }
+    ]
+  }
 ]

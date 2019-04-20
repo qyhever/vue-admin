@@ -52,6 +52,13 @@ export default {
         }
       )
       map.addEventListener('click', e => {
+        const marker = new BMap.Marker(e.point)
+        map.clearOverlays()
+        map.addOverlay(marker)
+        const geocoder = new BMap.Geocoder()
+        geocoder.getLocation(e.point, rs => {
+          console.log(rs.addressComponents)
+        })
         const text = `当前坐标：${e.point.lng} , ${e.point.lat}`
         this.$message(text)
       })

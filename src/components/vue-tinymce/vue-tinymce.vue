@@ -78,7 +78,7 @@ export default {
       const _this = this
       window.tinymce.init({
         // language: 'zh_CN',
-        language_url: '/static/tinymce/langs/zh_CN.js',
+        language_url: './static/tinymce/langs/zh_CN.js',
         // theme_url: '/static/tinymce4.7.5/theme/modern/theme.min.js',
         // skin_url: '/static/tinymce4.7.5/skins/skin.min.css',
         // content_css: '/static/tinymce4.7.5/skins/content.min.css',
