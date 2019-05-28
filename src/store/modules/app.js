@@ -1,20 +1,20 @@
 import { getCollapse, setCollapse } from '@/utils/storage'
 
 const state = {
-  isCollapse: getCollapse(),
+  collapsed: getCollapse(),
   language: localStorage.getItem('language') || 'zh',
   loading: false
 }
 
 const getters = {
-  isCollapse: state => state.isCollapse,
+  collapsed: state => state.collapsed,
   language: state => state.language
 }
 
 const mutations = {
   TOGGLE_MENU(state) {
-    setCollapse(!state.isCollapse)
-    state.isCollapse = !state.isCollapse
+    setCollapse(!state.collapsed)
+    state.collapsed = !state.collapsed
   },
   TOGGLE_LANGUAGE(state, language) {
     state.language = language

@@ -1,7 +1,7 @@
 <template>
   <el-header class="header">
     <div class="menu-collapse" @click="toggleMenu">
-      <menu-unfold class="icon-menu" v-if="isCollapse"></menu-unfold>
+      <menu-unfold class="icon-menu" v-if="collapsed"></menu-unfold>
       <menu-fold class="icon-menu" v-else></menu-fold>
     </div>
     <div class="header-right">
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isCollapse', 'userInfo'])
+    ...mapGetters(['collapsed', 'userInfo'])
   },
   mounted() {
     this.init()

@@ -8,7 +8,7 @@
       background-color="#001529"
       active-text-color="#fff"
       text-color="#ffffffa6"
-      :collapse="isCollapse"
+      :collapse="collapsed"
       unique-opened
       @select="handleSelect">
       <template v-for="(item) in routers">
@@ -60,7 +60,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isCollapse']),
+    ...mapGetters(['collapsed']),
     routers() {
       return getMenu(this.$store.getters.routers)
     }
