@@ -1,5 +1,5 @@
 <template>
-  <div>guest</div>
+  <div class="con-main">guest</div>
 </template>
 
 <script>

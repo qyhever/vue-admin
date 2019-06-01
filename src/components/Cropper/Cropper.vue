@@ -9,17 +9,17 @@
         <slot>
           <el-button type="primary" @click="upload">上传图片</el-button>
         </slot>
-        <div v-show="insideSrc">
-          <el-button type="primary" @click="rotate">
+        <div v-show="insideSrc" class="mt10">
+          <el-button type="primary" @click="rotate" class="control-btn">
             <i class="fa fa-rotate-right"></i>
           </el-button>
-          <el-button type="primary" @click="shrink">
+          <el-button type="primary" @click="shrink" class="control-btn">
             <i class="fa fa-minus"></i>
           </el-button>
-          <el-button type="primary" @click="magnify">
+          <el-button type="primary" @click="magnify" class="control-btn">
             <i class="fa fa-plus"></i>
           </el-button>
-          <el-button style="width: 150px;margin-top: 10px;" type="primary" @click="crop">{{ cropButtonText }}</el-button>
+          <el-button style="width: 150px;margin-top: 10px;margin-left: 0;" type="primary" @click="crop">{{ cropButtonText }}</el-button>
         </div>
       </div>
     </div>
@@ -73,10 +73,14 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      let dom = document.getElementById(this.imgId)
+      const dom = document.getElementById(this.imgId)
       this.cropper = new Cropper(dom, {
         preview: `#${this.previewId}`,
-        checkCrossOrigin: true
+        checkCrossOrigin: true,
+        autoCropArea: 1,
+        modal: false,
+        background: false,
+        scalable: false
       })
     })
   },
@@ -152,6 +156,9 @@ export default {
     .button-box{
       padding: 10px 0 0;
     }
+  }
+  .control-btn {
+    padding: 8px 10px;
   }
 }
 </style>

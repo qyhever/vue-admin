@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
-import { MessageBox, Message } from 'element-ui'
+import { Message } from 'element-ui'
 import { getToken } from '@/utils/storage'
 
 // axios.defaults.headers.post['Content-Type'] = 'application/json charset=UTF-8'
@@ -17,9 +17,6 @@ const toLogin = () => {
       path: '/login',
       query: { redirect: router.currentRoute.fullPath }
     })
-    setTimeout(() => {
-      window.location.reload()
-    }, 20)
   })
 }
 
@@ -48,15 +45,8 @@ instance.interceptors.response.use(response => {
   const status = error.response.status
   // const msg = error.response.data.msg
   if (status === 401) {
-    MessageBox.confirm('登录状态失效，请重新登录', '温馨提示', {
-      showCancelButton: false,
-      confirmButtonText: '重新登录',
-      type: 'warning'
-    }).then(() => {
-      toLogin()
-    }).catch(() => {
-      toLogin()
-    })
+    Message.warning('登录状态失效，请重新登录')
+    toLogin()
   }
 
   if (status === 404) {

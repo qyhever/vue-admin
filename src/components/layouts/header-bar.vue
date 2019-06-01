@@ -70,9 +70,7 @@ export default {
         // ...
       } else {
         await this.$store.dispatch('logout')
-        setTimeout(() => {
-          window.location.reload() // 刷新页面重新实例化 vue-router，否则会重复添加路由
-        }, 20)
+        this.$router.replace(`/login?redirect=${this.$route.fullPath}`)
       }
     }
   }
@@ -80,6 +78,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//@import "~@/assets/scss/mixin.scss";
 .header {
   @include border-1px(#eee);
   flex: 0 0 60px;

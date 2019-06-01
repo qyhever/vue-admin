@@ -21,29 +21,25 @@ export default {
           }
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            formatter(value) {
+              return `${value} 件`
+            }
+          },
+          splitLine: {
+            show: false
+          }
         },
         series: [
           {
+            type: 'bar',
             color: '#3aa1ff',
-            data: [
-              24,
-              115,
-              155,
-              198,
-              178,
-              58,
-              31,
-              188,
-              161,
-              68,
-              34,
-              75,
-              58,
-              51,
-              137
-            ],
-            type: 'bar'
+            data: [ 24, 115, 155, 198, 178, 58, 31, 188, 161, 68, 34, 75, 58, 51, 137 ],
+            label: {
+              show: true,
+              position: 'top'
+            }
           }
         ]
       }

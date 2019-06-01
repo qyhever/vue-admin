@@ -2,8 +2,7 @@
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
       router
-      :default-active="$route.path"
-      :default-openeds="defaultOpeneds"
+      :default-active="activeMenu"
       class="menu"
       background-color="#001529"
       active-text-color="#fff"
@@ -42,7 +41,7 @@ import { mapGetters } from 'vuex'
 // import { routers } from '@/router'
 function getMenu(list) {
   return list.filter(item => {
-    if (!item.meta || !item.meta.hiddenInMenu) {
+    if (!item.hiddenInMenu) {
       if (item.children) {
         item.children = getMenu(item.children)
       }
@@ -55,14 +54,20 @@ function getMenu(list) {
 export default {
   name: 'Sliderbar',
   data() {
-    return {
-      defaultOpeneds: ['1']
-    }
+    return {}
   },
   computed: {
     ...mapGetters(['collapsed']),
     routers() {
-      return getMenu(this.$store.getters.routers)
+      const result = getMenu(this.$store.getters.routers)
+      return result
+    },
+    activeMenu() {
+      const { meta, path } = this.$route
+      if (meta.activeMenu) {
+        return meta.activeMenu
+      }
+      return path
     }
   },
   methods: {
@@ -79,6 +84,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+//@import "~@/assets/scss/element-variables.scss";
 .menu:not(.el-menu--collapse) {
   width: 220px;
   min-height: 400px;

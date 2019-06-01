@@ -94,9 +94,9 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.DllReferencePlugin({
-      manifest: resolve('static/dll/mainfist.json')
-    })
+    // new webpack.DllReferencePlugin({
+    //   manifest: resolve('static/dll/mainfist.json')
+    // })
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue

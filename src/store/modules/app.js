@@ -6,11 +6,6 @@ const state = {
   loading: false
 }
 
-const getters = {
-  collapsed: state => state.collapsed,
-  language: state => state.language
-}
-
 const mutations = {
   TOGGLE_MENU(state) {
     setCollapse(!state.collapsed)
@@ -25,13 +20,7 @@ const mutations = {
   }
 }
 
-const actions = {
-
-}
-
 export default {
   state,
-  getters,
-  mutations,
-  actions
+  mutations
 }

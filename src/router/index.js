@@ -4,60 +4,63 @@ import Router from 'vue-router'
 /* eslint-disable import/first */
 Vue.use(Router)
 
-import Layout from '@/components/layouts/basic-layout'
-import Login from '@/pages/login'
+const Layout = () => import('@/components/layouts/basic-layout')
+const Login = () => import('@/pages/login')
 // table
-import Dashboard from '@/pages/dashboard'
-import TableQuery from '@/pages/table/query'
-import RegisterUser from '@/pages/table/register-user'
-import Select from '@/pages/table/select'
+const Dashboard = () => import('@/pages/dashboard')
+const TableQuery = () => import('@/pages/table/query')
+const RegisterUser = () => import('@/pages/table/register-user')
+const Select = () => import('@/pages/table/select')
 // excel
-import TableImport from '@/pages/excel/import'
-import TableExport from '@/pages/excel/export'
+const TableImport = () => import('@/pages/excel/import')
+const TableExport = () => import('@/pages/excel/export')
 // richtext
-import Tinymce from '@/pages/richtext/tinymce'
-import Ckeditor from '@/pages/richtext/ckeditor'
-import Quill from '@/pages/richtext/quill'
+const Tinymce = () => import('@/pages/richtext/tinymce')
+const Ckeditor = () => import('@/pages/richtext/ckeditor')
+const Quill = () => import('@/pages/richtext/quill')
 // charts
-import ChartColmun from '@/pages/charts/colmun'
-import ChartBar from '@/pages/charts/bar'
-import ChartLine from '@/pages/charts/line'
-import ChartPie from '@/pages/charts/pie'
-import ChartCircle from '@/pages/charts/circle'
-import ChartRadar from '@/pages/charts/radar'
-import ChartMap from '@/pages/charts/map'
+const ChartColmun = () => import('@/pages/charts/colmun')
+const ChartBar = () => import('@/pages/charts/bar')
+const ChartLine = () => import('@/pages/charts/line')
+const ChartPie = () => import('@/pages/charts/pie')
+const ChartCircle = () => import('@/pages/charts/circle')
+const ChartRadar = () => import('@/pages/charts/radar')
+const ChartMap = () => import('@/pages/charts/map')
 // base components
-import Cropper from '@/pages/base/cropper'
-import Clipboard from '@/pages/base/clipboard'
-import Qrcode from '@/pages/base/qrcode'
+const Cropper = () => import('@/pages/base/cropper')
+const Clipboard = () => import('@/pages/base/clipboard')
+const Qrcode = () => import('@/pages/base/qrcode')
+const DragModal = () => import('@/pages/base/drag-modal')
 // map
-import BmapSelectPoint from '@/pages/bmap/pinot-coordinate'
-import BmapSuggestSearch from '@/pages/bmap/suggest-render-map'
-import BmapResolveAddress from '@/pages/bmap/resolve-address'
-import AmapSelectPoint from '@/pages/amap/pinot-coordinate'
-import AmapSuggestSearch from '@/pages/amap/suggest-render-map'
-import AmapResolveAddress from '@/pages/amap/resolve-address'
-import Exception404 from '@/pages/exception/exception404'
+const BmapSelectPoint = () => import('@/pages/bmap/pinot-coordinate')
+const BmapSuggestSearch = () => import('@/pages/bmap/suggest-render-map')
+const BmapResolveAddress = () => import('@/pages/bmap/resolve-address')
+const AmapSelectPoint = () => import('@/pages/amap/pinot-coordinate')
+const AmapSuggestSearch = () => import('@/pages/amap/suggest-render-map')
+const AmapResolveAddress = () => import('@/pages/amap/resolve-address')
+const Exception404 = () => import('@/pages/exception/exception404')
 // test
-import Admin from '@/pages/admin'
-import Test from '@/pages/test'
-import Guest from '@/pages/guest'
+const Admin = () => import('@/pages/admin')
+const Test = () => import('@/pages/test')
+const Guest = () => import('@/pages/guest')
 
 // 静态公共路由
-export const constantRouters = [
-  { path: '/', redirect: '/dashboard', meta: { hiddenInMenu: true } },
-  { path: '/login', name: 'Login', component: Login, meta: { title: '登录', hiddenInMenu: true } },
-  { path: '/404', component: Exception404, meta: { hiddenInMenu: true } }
+export const constantRoutes = [
+  { path: '/', redirect: '/dashboard', hiddenInMenu: true },
+  { path: '/login', name: 'Login', component: Login, hiddenInMenu: true, meta: { title: '登录' } },
+  { path: '/404', component: Exception404, hiddenInMenu: true }
 ]
 
 // 注册路由
-export default new Router({
+const createRouter = () => new Router({
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouters
+  routes: constantRoutes
 })
 
+const router = createRouter()
+
 // 动态鉴权路由
-export const asyncRouters = [
+export const asyncRoutes = [
   // dashboard -----------------------------------------------------------------------------------
   {
     path: '/',
@@ -114,7 +117,8 @@ export const asyncRouters = [
       { path: '/base/cropper', name: 'base_cropper', component: Cropper, meta: { title: '图片裁剪' } },
       // { path: '/base/upload', name: 'base_upload', component: Cropper, meta: { title: '上传' } },
       { path: '/base/clipboard', name: 'base_clipboard', component: Clipboard, meta: { title: '复制文本' } },
-      { path: '/base/qrcode', name: 'base_qrcode', component: Qrcode, meta: { title: '二维码' } }
+      { path: '/base/qrcode', name: 'base_qrcode', component: Qrcode, meta: { title: '二维码' } },
+      { path: '/base/drag-modal', name: 'base_drag_modal', component: DragModal, meta: { title: '可拖拽弹窗' } }
     ]
   },
   // excel components -----------------------------------------------------------------------------------
@@ -180,7 +184,7 @@ export const asyncRouters = [
       { path: '/amap/resolve-address', name: 'amap_resolve_address', component: AmapResolveAddress, meta: { title: '地址解析' } }
     ]
   },
-  // admin test components -----------------------------------------------------------------------------------
+  // auth test components -----------------------------------------------------------------------------------
   {
     path: '/admin',
     name: 'admin_parent',
@@ -207,13 +211,17 @@ export const asyncRouters = [
   },
   {
     path: '*',
-    meta: { hiddenInMenu: true },
+    hiddenInMenu: true,
     component: Layout,
     children: [
-      {
-        path: '*',
-        component: Exception404
-      }
+      { path: '*', component: Exception404 }
     ]
   }
 ]
+
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router
