@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["9Lit"],{"9Lit":function(n,t,i){"use strict";i.r(t);var e={name:"Admin"},a=i("KHd+"),s=Object(a.a)(e,function(){var n=this.$createElement;return(this._self._c||n)("div",{staticClass:"con-main"},[this._v("admin")])},[],!1,null,null,null);s.options.__file="admin.vue";var u=s.exports;i.d(t,"default",function(){return u})}}]);
