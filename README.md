@@ -4,6 +4,8 @@
 
 ## Build Setup
 
+[在线地址](https://qyhever.top/c-admin)
+
 ``` bash
 # install dependencies
 npm install
