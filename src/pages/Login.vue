@@ -55,7 +55,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler(route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -69,7 +69,7 @@ export default {
     async submitForm(form) {
       await this.$refs[form].validate()
       await this.login(this.form)
-      this.$router.replace({ path: this.redirect || '/dashboard' })
+      this.$router.push({ path: this.redirect || '/dashboard' })
     }
   }
 }

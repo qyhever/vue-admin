@@ -33,3 +33,7 @@ export function createInput(type) {
     input.click()
   })
 }
+
+export function setTitle(title = 'c-admin') {
+  document.title = title
+}

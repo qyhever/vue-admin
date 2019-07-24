@@ -56,6 +56,17 @@ exports.cssLoaders = function(options) {
         })
       })
     }
+    if (loader === 'sass') {
+      loaders.push({
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.join(__dirname, '../src/assets/scss/element-variables.scss'),
+            path.join(__dirname, '../src/assets/scss/mixin.scss')
+          ]
+        }
+      })
+    }
 
     return loaders
   }
@@ -67,15 +78,16 @@ exports.cssLoaders = function(options) {
     sass: generateLoaders('sass', {
       indentedSyntax: true
     }),
-    scss: generateLoaders('sass').concat({
-      loader: 'sass-resources-loader',
-      options:{
-        resources: [
-          path.join(__dirname, '../src/assets/scss/element-variables.scss'),
-          path.join(__dirname, '../src/assets/scss/mixin.scss')
-        ]
-      }
-    }),
+    // scss: generateLoaders('sass').concat({
+    //   loader: 'sass-resources-loader',
+    //   options:{
+    //     resources: [
+    //       path.join(__dirname, '../src/assets/scss/element-variables.scss'),
+    //       path.join(__dirname, '../src/assets/scss/mixin.scss')
+    //     ]
+    //   }
+    // }),
+    scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

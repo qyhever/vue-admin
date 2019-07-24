@@ -4,27 +4,45 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/storage'
 import { refreshToken } from '@/api/user'
+import { setTitle } from '@/utils/utils'
+import axios from 'axios'
+const CancelToken = axios.CancelToken
 
 const whiteList = ['/login', '/404']
 
-router.beforeEach((to, from, next) => {
+function toLoginPage(next, to) {
+  next(`/login?redirect=${to.path}`)
+  NProgress.done()
+}
+
+router.beforeEach(async (to, from, next) => {
+  const source = store.state.app.source
+  source.cancel && source.cancel()
+  store.commit('SET_SOURCE', CancelToken.source())
+
   NProgress.start()
-  const { title } = to.meta
-  title && (document.title = title)
-  if (getToken()) { // 有无 token
+  setTitle(to.meta.title)
+  const token = getToken()
+  if (token) {
     if (to.path === '/login') {
       next({ path: '/' })
+      NProgress.done()
     } else {
-      if (!store.getters.userInfo.roles) {
-        store.dispatch('getUserInfo').then(roles => {
-          store.dispatch('generateRoutes', roles).then(() => {
-            router.addRoutes(store.getters.addRoutes)
-            next({ ...to, replace: true })
-          })
-          next()
-        })
+      const hasRoles = store.getters.userInfo.roles
+      if (!hasRoles) {
+        try {
+          // roles 必须为 数组, ep: ['admin'] or ,['dev','editor']
+          const roles = await store.dispatch('getUserInfo')
+          const accessRoutes = await store.dispatch('generateRoutes', roles)
+          router.addRoutes(accessRoutes)
+          next({ ...to, replace: true })
+        } catch (err) {
+          await store.dispatch('removeToken')
+          toLoginPage(next, to)
+        }
       } else {
-        refreshToken().then(res => {
+        try {
+          const res = await refreshToken()
           if (res.success) {
             const { token } = res.data
             if (token) {
@@ -32,17 +50,16 @@ router.beforeEach((to, from, next) => {
             }
           }
           next()
-        }).catch(() => {
+        } catch (err) {
           next()
-        })
+        }
       }
     }
   } else {
-    if (whiteList.includes(to.path)) {
+    if (whiteList.indexOf(to.path) >= 0) {
       next()
     } else {
-      next(`/login?redirect=${to.path}`)
-      NProgress.done()
+      toLoginPage(next, to)
     }
   }
 })

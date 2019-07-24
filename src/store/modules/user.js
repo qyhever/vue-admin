@@ -1,15 +1,11 @@
 import * as storage from '@/utils/storage'
 import * as api from '@/api/user'
 import md5 from 'md5'
+import { resetRouter } from '@/router'
 
 const state = {
   token: storage.getToken(),
   userInfo: {}
-}
-
-const getters = {
-  token: state => state.token,
-  userInfo: state => state.userInfo
 }
 
 const mutations = {
@@ -41,14 +37,23 @@ const actions = {
       })
     })
   },
-  logout({ commit }) {
+  removeToken({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
       storage.clearStorage()
       resolve()
     })
   },
-  getUserInfo({ _, commit }) {
+  logout({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      commit('SET_USER_INFO', {})
+      storage.clearStorage()
+      resetRouter()
+      resolve()
+    })
+  },
+  getUserInfo({ commit }) {
     return new Promise((resolve, reject) => {
       api.getUserReq().then(res => {
         if (res.success) {
@@ -65,7 +70,6 @@ const actions = {
 
 export default {
   state,
-  getters,
   mutations,
   actions
 }

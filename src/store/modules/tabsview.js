@@ -20,7 +20,6 @@ const mutations = {
       if (route.path === '/dashboard') return
       if (item.path === route.path) {
         state.visitedViews.splice(index, 1)
-        return
       }
     })
   }

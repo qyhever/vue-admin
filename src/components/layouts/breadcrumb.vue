@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+//@import "~@/assets/scss/mixin.scss";
 .bread {
   flex: 0 0 60px;
   padding: 0 20px;

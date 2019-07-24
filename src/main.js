@@ -4,15 +4,16 @@ import router from './router'
 import store from './store'
 
 /* eslint-disable import/first */
-import '@/router/permission'
+import './router/permission'
 
-import '@/assets/css/index.css'
+import './assets/css/index.css'
 import 'font-awesome/css/font-awesome.css'
-import '@/assets/scss/layout.scss'
-import '@/assets/scss/transition.scss'
+import './assets/scss/layout.scss'
+import './assets/scss/transition.scss'
 
-// import '@/assets/scss/element-variables.scss'
-// import 'element-ui/lib/theme-chalk/index.css'
+// import './assets/scss/element-variables.scss'
+// import './assets/scss/mixin.scss'
+import 'element-ui/packages/theme-chalk/src/index.scss'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
@@ -40,7 +41,8 @@ import './icons'
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
+  el: '#app',
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+})

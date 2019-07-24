@@ -25,6 +25,7 @@ export default {
         xAxis: [
           {
             type: 'category',
+            name: '地区',
             data: ['新虹桥', '中山公园', '虹桥', '镇宁路', '天山古北']
           }
         ],

@@ -1,8 +1,9 @@
 {
-  "name": "vue-admin",
+  "name": "c-admin",
   "version": "1.0.0",
   "description": "一个使用vue, element-ui构建的后台管理系统",
   "author": "query <15927700473@163.com>",
+  "license": "MIT",
   "keywords": [
     "vue",
     "vue-router",
@@ -11,7 +12,7 @@
     "axios"
   ],
   "scripts": {
-    "dev": "cross-env BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --progress --color --config build/webpack.dev.conf.js",
+    "dev": "cross-env BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --inline --progress --color --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "dll": "webpack --config ./build/webpack.dll.conf.js",
     "build": "node build/build.js",
