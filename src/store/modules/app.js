@@ -3,11 +3,15 @@ import { getCollapse, setCollapse } from '@/utils/storage'
 const state = {
   collapsed: getCollapse(),
   language: localStorage.getItem('language') || 'zh',
+<<<<<<< HEAD
   loading: false,
   source: {
     token: null,
     cancel: null
   }
+=======
+  loading: false
+>>>>>>> 9b4f73fab340ae02e268d5d06a21af2748036b09
 }
 
 const mutations = {

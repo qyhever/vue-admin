@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["Bilc"],{Bilc:function(t,n,e){"use strict";e.r(n);var s={name:"test"},i=e("KHd+"),c=Object(i.a)(s,function(){var t=this.$createElement;return(this._self._c||t)("div",{staticClass:"con-main"},[this._v("test")])},[],!1,null,null,null);c.options.__file="test.vue";var l=c.exports;e.d(n,"default",function(){return l})}}]);
