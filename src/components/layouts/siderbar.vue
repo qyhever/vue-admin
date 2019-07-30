@@ -85,6 +85,12 @@ export default {
 
 <style scoped lang="scss">
 //@import "~@/assets/scss/element-variables.scss";
+.scrollbar-wrapper {
+  /deep/ &.el-scrollbar__wrap {
+    overflow-x: inherit;
+    overflow-y: scroll;
+  }
+}
 .menu:not(.el-menu--collapse) {
   width: 220px;
   min-height: 400px;

@@ -5,6 +5,8 @@ import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/storage'
 import { refreshToken } from '@/api/user'
 import { setTitle } from '@/utils/utils'
+import axios from 'axios'
+const CancelToken = axios.CancelToken
 
 const whiteList = ['/login', '/404']
 
@@ -14,6 +16,10 @@ function toLoginPage(next, to) {
 }
 
 router.beforeEach(async (to, from, next) => {
+  const source = store.state.app.source
+  source.cancel && source.cancel()
+  store.commit('SET_SOURCE', CancelToken.source())
+
   NProgress.start()
   setTitle(to.meta.title)
   const token = getToken()

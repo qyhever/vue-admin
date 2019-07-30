@@ -3,7 +3,11 @@ import { getCollapse, setCollapse } from '@/utils/storage'
 const state = {
   collapsed: getCollapse(),
   language: localStorage.getItem('language') || 'zh',
-  loading: false
+  loading: false,
+  source: {
+    token: null,
+    cancel: null
+  }
 }
 
 const mutations = {
@@ -17,6 +21,9 @@ const mutations = {
   },
   TOGGLE_LOADING(state, value) {
     state.loading = value
+  },
+  SET_SOURCE(state, data) {
+    state.source = data
   }
 }
 

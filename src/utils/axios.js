@@ -21,6 +21,8 @@ const toLogin = () => {
 }
 
 instance.interceptors.request.use(config => {
+  const source = store.state.app.source
+  config.cancelToken = source.token
   const token = getToken()
   if (token) {
     config.headers.Authorization = token
